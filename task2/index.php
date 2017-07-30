@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        echo "<form method=post enctype=multipart/form-data> 
-<input type=checkbox name=option1 value=a1 checked>Plus<Br>
-<input type=checkbox name=option2 value=a2>Minus<Br>
-<input type=text name=date1> 
-<input type=text name=date2> 
-<input type=submit value= Result 
-</form>";
-        ?>
-    </body>
-</html>
+<?php
+
+  include_once './templates/index.php';
+  include_once './libs/Calc.php';
+
+  $objCalc = new Calc();
+
+  $objCalc->setDate1("$date1");
+  echo $objCalc->getDate1();
+
+  $objCalc->setDate2("$date2");
+  echo $objCalc->getDate2();
+
+  if ($date1 && $date2)
+  {
+		if (isset($plus))
+		{
+			  $a= $objCalc->plus();
+		}
+		if (isset($minus))
+		{
+			 echo $objCalc->minus();
+		}
+  }

@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Task3</title>
-    </head>
-    <body>
-        <?php
-        
-        
-        
-        ?>
-    </body>
-</html>
+<?php
+include_once './templates/index.php';
+include_once './libs/FileRead.php';
