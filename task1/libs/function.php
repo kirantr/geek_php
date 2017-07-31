@@ -13,7 +13,7 @@
 
 //  function input($name)
 //  {
-  echo "<form method=post action=../templates/index.php enctype=multipart/form-data> 
+  echo "<form method=post enctype=multipart/form-data> 
     Select file: <input type=file name=UserFile> 
     <input type=submit value=Upload> 
     </form>";
@@ -22,14 +22,14 @@
   function delete($fileDelete)
   {
       echo "<form method=post action=../templates/index.php> 
-    <input type=hidden name=name value=$fileDelete> 
+    <input type=hidden name=$fileDelete value=del> 
     <input type=submit value=Delete> 
   </form>";
   }
 //      if(!empty($_POST['name']))
 //      print_r('$fileDelete');
 
-  print_r($_POST['name']);
+//  print_r($_POST['name']);
 //  input(UserFile);
 //if (isset($_FILES["myfile"])) // Если файл существует проверка
 //{
@@ -76,7 +76,7 @@
           echo " " . $file_size . " Kbyte <br> ";
       } elseif ($file_size > 1048576)
       {
-          echo " " . $file_size / 1048576 . " Mbyte";
+          echo " " . $file_size / 1048576 . " Mbyte <br> ";
       }
 
 //      if (!empty($files_array[2]))
@@ -87,7 +87,9 @@
 //          echo 'Empty directory';
 //      }
       $fileDelete = $upload_path . $files_array[$i];
+       print_r($_POST["$fileDelete"]);
       delete($fileDelete);
+       print_r($_POST["$fileDelete"]);
   }
 
   unlink($a)
