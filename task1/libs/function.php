@@ -88,7 +88,7 @@
 //      }
       $fileDelete = $upload_path . $files_array[$i];
     echo '<a href="$fileDelete" class="delete">"$files_array[$i]"</a>';
-//       print_r($_POST["$fileDelete"]);
+       print_r($_POST["$fileDelete"]);
 //      delete($fileDelete);
 //       print_r($_POST["$fileDelete"]);
   }
