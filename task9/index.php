@@ -1,22 +1,19 @@
 <?php
 
-class MyClass
+class HtmlHelper
 {
-    const CONSTANT = 'znachenie constanty';
-
-    function showConstant() {
-        echo  self::CONSTANT . "\n";
+    private static $select1;
+    public static function setSelect($select1)
+    {
+        $this->select = $select;
     }
+    
+    public static function getSelect()
+    {
+        return $this->select;
+    }
+
 }
 
-echo MyClass::CONSTANT . "\n";
-
-$classname = "MyClass";
-echo $classname::CONSTANT . "\n"; // начиная с версии PHP 5.3.0
-
-$class = new MyClass();
-$class->showConstant();
-
-echo $class::CONSTANT."\n";
-
+HtmlHelper :: getSelect();
 ?>
