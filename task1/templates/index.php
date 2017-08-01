@@ -2,15 +2,25 @@
 <html>
     <head>
         <meta charset="utf-8">
-        
+
         <title>Task1</title>
     </head>
     <body>
-
+        <form method=post enctype=multipart/form-data> 
+            Select file: <input type=file name=UserFile> 
+            <input type=submit value=Upload> 
+        </form>
 
         <?php
-//        include"/usr/home/user7/public_html/MYPHP/task1/const.php";
-          include_once '../libs/function.php';
+
+          function delete($fileDelete)
+          {
+            $form = "<form method=post>
+              <input type=hidden name=del value=$fileDelete> 
+              <input type=submit value=Delete> 
+            </form>";
+            return $form;
+          }
         ?>
 
     </body>
