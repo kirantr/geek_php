@@ -6,7 +6,7 @@
         <title>Task1</title>
     </head>
     <body>
-        <form method=post enctype=multipart/form-data> 
+        <form method=post action="./index.php" enctype=multipart/form-data> 
             Select file: <input type=file name=UserFile> 
             <input type=submit value=Upload> 
         </form>
@@ -15,7 +15,7 @@
 
           function delete($fileDelete)
           {
-            $form = "<form method=post>
+            $form = "<form method=post action=./index.php>
               <input type=hidden name=del value=$fileDelete> 
               <input type=submit value=Delete> 
             </form>";

@@ -2,18 +2,18 @@
 
 class HtmlHelper
 {
-    private static $select1;
-    public static function setSelect($select1)
+    public static $select;
+    public static function Select()
     {
-        $this->select = $select;
+        $select = "<select>
+                            <option>Пункт 1</option>
+                            <option>Пункт 2</option>
+                        </select>";
+        return $select;
     }
     
-    public static function getSelect()
-    {
-        return $this->select;
-    }
 
 }
 
-HtmlHelper :: getSelect();
+echo HtmlHelper :: Select();
 ?>
