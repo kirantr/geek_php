@@ -5,8 +5,7 @@ mysql_select_db(DBNAME) or die(mysql_error());
 
 class Mysql extended Sql
 {
-  public function setMmysqlHost(DBHOST, DBUSER, DBPASS)
-  {
-  
-  }
+ function __construct() {
+        $this->mysqli = new mysqli($host, $user, $password, $database, $port, $socket);
+    }
 }
