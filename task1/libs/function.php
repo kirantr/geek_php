@@ -30,7 +30,10 @@
  </thead>
  <tbody>
       <tr>
- <td>' .$i.'</td>';
+ <td></td>
+      </tbody>
+
+ ';
       $fileNameArr = $filesArray[$i];
          $fileSize = filesize($uploadPath . $filesArray[$i]);
          echo $fileNameArr;
@@ -56,7 +59,6 @@
          $fileDelete = $uploadPath . $filesArray[$i];
 
          echo delete($fileDelete);
-      </tbody>
      }
      
  }
