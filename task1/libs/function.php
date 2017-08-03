@@ -20,7 +20,18 @@
      $filesArray = scandir($uploadPath);
      for ($i = 2; $i < count($filesArray); ++$i)
      {
-         $fileNameArr = $filesArray[$i];
+    echo '<table class="table">
+ <thead>
+ <tr>
+ <th>N</th>
+ <th>Files</th>
+ <th>Delete</th>
+ </tr>
+ </thead>
+ <tbody>
+      <tr>
+ <td>' .$i.'</td>';
+      $fileNameArr = $filesArray[$i];
          $fileSize = filesize($uploadPath . $filesArray[$i]);
          echo $fileNameArr;
          if ($fileSize < 1024)
@@ -45,6 +56,7 @@
          $fileDelete = $uploadPath . $filesArray[$i];
 
          echo delete($fileDelete);
+      </tbody>
      }
      
  }
