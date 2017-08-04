@@ -30,26 +30,21 @@
  </thead>
  <tbody>
       <tr>
- <td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-
- ';
+';
+ 
       $fileNameArr = $filesArray[$i];
          $fileSize = filesize($uploadPath . $filesArray[$i]);
-         echo $fileNameArr;
+         echo '<td>' . $fileNameArr . ' </td>';
          if ($fileSize < 1024)
          {
-             echo " " . $fileSize . " Byte <br>";
+             echo '<td>' . $fileSize . " Byte </td>";
          } elseif ($fileSize > 1024 && $fileSize < 1048576)
          {
              $fileSize = $fileSize / 1024;
-             echo " " . $fileSize . " Kbyte <br> ";
+             echo '<td>' . $fileSize . " Kbyte </td> ";
          } elseif ($fileSize > 1048576)
          {
-             echo " " . $fileSize / 1048576 . " Mbyte <br> ";
+             echo '<td>' . $fileSize / 1048576 . " Mbyte </td> ";
          }
 
          if ($fileName == $fileNameArr)
@@ -63,7 +58,9 @@
 
          echo delete($fileDelete);
      }
-     
+     echo '</tr>
+</tbody>
+';
  }
  if (!empty($_POST['del']))
      {
