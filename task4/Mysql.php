@@ -1,11 +1,21 @@
+<?php
 require_once "constants.php";
+require_once "Sql.php";
 
-$db_server = mysql_connect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
-mysql_select_db(DBNAME) or die(mysql_error());
-
-class Mysql extended Sql
+class Mysql extends Sql
 {
  function __construct() {
-        $this->mysqli = new mysqli($host, $user, $password, $database, $port, $socket);
+        $db_server = mysql_connect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
+    }
+    
+    function result(){
+       $result = mysql_query($query);
+       return $result;
     }
 }
+
+$objMySql = new Mysql();
+
+$db->exec();
+
+?>
