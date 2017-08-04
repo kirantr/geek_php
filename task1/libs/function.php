@@ -15,11 +15,6 @@
 
  $fileName = $_FILES['UserFile']['name'];
 
- function arr($uploadPath, $fileName)
- {
-     $filesArray = scandir($uploadPath);
-     for ($i = 2; $i < count($filesArray); ++$i)
-     {
     echo '<table class="table">
  <thead>
  <tr>
@@ -32,6 +27,11 @@
       <tr>
 ';
  
+ function arr($uploadPath, $fileName)
+ {
+     $filesArray = scandir($uploadPath);
+     for ($i = 2; $i < count($filesArray); ++$i)
+     {
       $fileNameArr = $filesArray[$i];
          $fileSize = filesize($uploadPath . $filesArray[$i]);
          echo '<td>' . $fileNameArr . ' </td>';
