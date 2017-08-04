@@ -30,8 +30,11 @@
  </thead>
  <tbody>
       <tr>
- <td></td>
-      </tbody>
+ <td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
 
  ';
       $fileNameArr = $filesArray[$i];
