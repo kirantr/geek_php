@@ -1,6 +1,5 @@
 <?php
 
-  include_once '../config.php';
 
   $openFile = fopen($pathFile, "r");
   while (!feof($openFile))

@@ -35,7 +35,7 @@
          $objCalc->setDate1("$date1");
          echo $objCalc->getDate1();
 
-         $objCalc->setDate2("$date2");
+         $objCalc->setDate2("$date2", $division);
          echo $objCalc->getDate2();
         ?>
     </body>
