@@ -13,10 +13,7 @@
 
  $fileName = $_FILES['UserFile']['name'];
 
- echo '<table class="table" border="1">';
- $fileName = $_FILES['UserFile']['name'];
-
- echo '<table class="table">
+ echo '<table class="table" border="1">
  <thead>
  <tr>
  <th>N</th>
@@ -53,17 +50,19 @@
              echo 'Such file already exists <br>';
              exit;
          }
-         echo '<tr>
 
 
-</tbody>
-';
+         $fileDelete = $uploadPath . $filesArray[$i];
+
+         echo '<td>' . delete($fileDelete) . "</td></tr>";
      }
-     if (!empty($_POST['del']))
-     {
-         $fileUnlink = $_POST['del'];
-         unlink($fileUnlink);
-     }
+
+     echo '</tbody>';
  }
 
+ if (!empty($_POST['del']))
+ {
+     $fileUnlink = $_POST['del'];
+     unlink($fileUnlink);
+ }
 ?>
