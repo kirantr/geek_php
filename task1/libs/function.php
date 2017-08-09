@@ -54,10 +54,10 @@
 
          $fileDelete = $uploadPath . $filesArray[$i];
 
-         echo '<td>' . delete($fileDelete) . "</td></tr>";
+         echo '<td>' . delete($fileDelete) . "</td>";
      }
 
-     echo '</tbody>';
+     echo '</tr></tbody>';
  }
 
  if (!empty($_POST['del']))

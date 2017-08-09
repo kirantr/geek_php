@@ -43,7 +43,7 @@
              {
                  if ($key == $inputStr)
                  {
-                     if ($inputSimb <= strlen($stringValue))
+                     if ($inputSimb == strlen($stringValue))
                      {
 
                          return $stringValue{$inputSimb};

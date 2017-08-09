@@ -1,115 +1,179 @@
 <?php
 
-  class Calc
-  {
+ class Calc
+ {
 
-		private $date1;
-		private $date2;
-		private $ms;
+     private $date1;
+     private $date2;
+     private $ms;
 
-		public function setDate1($date)
-		{
-			 if (($date) == '')
-			 {
-				  echo IS_NO_SET;
-			 } elseif (!is_numeric($date))
-			 {
-				  echo NOT_DATA;
-			 } else
-			 {
-				  return $this->date1 = $date;
-			 }
-		}
+     public function setDate1($date, $sel)
+     {
+         if ($sel == 'ms' || $sel == 'mr' )
+         {
+             return $this->date1 = $date;
+         } elseif (($date) == '')
+         {
+             echo IS_NO_SET;
+         } elseif (!is_numeric($date))
+         {
+             echo NOT_DATA;
+         } else
+         {
+             return $this->date1 = $date;
+         }
+     }
 
-		public function getDate1()
-		{
-			 return $this->date1;
-		}
+     public function getDate1()
+     {
+         return $this->date1;
+     }
 
-		public function setDate2($date, $division)
-		{
-			 if ($date == 0 && isset($division))
-			 {
-				  echo DIVISION_ZERO;
-				  exit;
-			 }
+     public function setDate2($date, $sel)
+     {
+         if ($sel == 'ms' 
+               || $sel == 'mr' 
+               || $sel == '+m' 
+               || $sel == '-m' 
+               || $sel == 'mc' 
+               || $sel == 'sqrt'
+         )
+         {
+             return $this->date2 = $date;
+         } elseif ($date == 0 && $sel == '/')
+         {
+             echo DIVISION_ZERO;
+             exit;
+         } elseif (($date) == '')
+         {
+             echo IS_NO_SET;
+         } elseif (!is_numeric($date))
+         {
+             echo NOT_DATA;
+         } else
+         {
+             return $this->date2 = $date;
+         }
+     }
 
-			 if (($date) == '')
-			 {
-				  echo IS_NO_SET;
-				  exit;
-			 } 
-			 elseif (!is_numeric($date))
-			 {
-				  echo NOT_DATA;
-				  exit;
-			 } else
-			 {
-				  return $this->date2 = $date;
-			 }
-		}
+     public function getDate2()
+     {
+         return $this->date2;
+     }
 
-//		public function setDate2($date)
-//		{
-//			 			 if ($date== 0)
-//			 {
-//				  echo DIVISION_ZERO;
-//			 }
-//		}
+     public function plus()
+     {
+         $sum = $this->getDate1() + $this->getDate2();
+         return $sum;
+     }
 
-		public function getDate2()
-		{
-			 return $this->date2;
-		}
+     public function minus()
+     {
+         $sum = $this->getDate1() - $this->getDate2();
+         return $sum;
+     }
 
-		public function plus()
-		{
-			 $sum = $this->getDate1() + $this->getDate2();
-			 return $sum;
-		}
+     public function multiplication()
+     {
+         $sum = $this->getDate1() * $this->getDate2();
+         return $sum;
+     }
 
-		public function minus()
-		{
-			 $sum = $this->getDate1() - $this->getDate2();
-			 return $sum;
-		}
+     public function division()
+     {
 
-		public function multiplication()
-		{
-			 $sum = $this->getDate1() * $this->getDate2();
-			 return $sum;
-		}
+         $sum = $this->getDate1() / $this->getDate2();
+         return $sum;
+     }
 
-		public function division()
-		{
+     public function precent()
+     {
+         $sum = ($this->getDate1() * $this->getDate2()) / 100;
+         return $sum;
+     }
 
-			 $sum = $this->getDate1() / $this->getDate2();
-			 return $sum;
-		}
+     public function sqrt()
+     {
+         if ($this->getDate1() > 0)
+         {
+             $sum = sqrt($this->getDate1());
+         } else
+         {
+             return SQRT_ERROR;
+         }
+         return $sum;
+     }
 
-		public function precent()
-		{
-			 $sum = ($this->getDate1() * $this->getDate2()) / 100;
-			 return $sum;
-		}
+     public function setMemory($memory)
+     {
+         $this->ms = $memory;
+     }
 
-		public function sqrt()
-		{
-			 if ($this->getDate2() > 0)
-			 {
-				  $sum = sqrt($this->getDate1());
-			 } else
-			 {
-				  return SQRT_ERROR;
-			 }
-			 return $sum;
-		}
+     public function getMemory()
+     {
+         return $this->ms;
+     }
 
-		public function setMemory($memory)
-		{
-			 $this->ms = $memory;
-		}
+     public function select($sel)
+     {
+         if ($sel == '+')
+         {
+             return '=' . $this->plus();
+         }
 
-  }
+         if ($sel == '-')
+         {
+             return '=' . $this->minus();
+         }
+
+         if ($sel == '*')
+         {
+             return '=' . $this->multiplication();
+         }
+
+         if ($sel == '/')
+         {
+             return '=' . $this->division();
+         }
+
+         if ($sel == '%')
+         {
+             return '=' . $this->precent();
+         }
+
+         if ($sel == 'sqrt')
+         {
+             return '=' . $this->sqrt();
+         }
+
+         if ($sel == 'ms')
+         {
+             $sum = $this->getMemory();
+             return $sum;
+         }
+         if ($sel == 'mr')
+         {
+             $sum = $this->getMemory();
+             return $sum;
+         }
+         if ($sel == '+m')
+         {
+             $sum = $this->getMemory() + $this->getDate1();
+             return '=' . $sum;
+         }
+         if ($sel == '-m')
+         {
+             $sum = $this->getMemory() - $this->getDate1();
+             return '=' . $sum;
+         }
+         if ($sel == 'mc')
+         {
+             unset($this->ms);
+             $sum = $this->ms;
+             return $sum;
+         }
+     }
+
+ }
 
 ?>
