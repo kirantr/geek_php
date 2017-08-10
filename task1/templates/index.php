@@ -13,14 +13,28 @@
 
         <?php
 
-          function delete($fileDelete)
-          {
-            $form = "<form method=post action=./index.php>
+         function delete($fileDelete)
+         {
+             $form = "<form method=post action=./index.php>
               <input type=hidden name=del value=$fileDelete> 
               <input type=submit value=Delete> 
             </form>";
-            return $form;
-          }
+             return $form;
+         }
+
+         echo '<table class="table" border="1">
+            <thead>
+            <tr>
+            <th>N</th>
+            <th>Files</th>
+            <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>';
+
+
+         $a;
         ?>
 
     </body>

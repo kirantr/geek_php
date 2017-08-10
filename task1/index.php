@@ -9,7 +9,8 @@
      echo 'There is no such directory ';
  } elseif (is_dir($uploadPath))
  {
-     arr($uploadPath, $fileName);
+     $outArray=arr($uploadPath, $fileName);
+     print_r($outArray);
  }
  if (!empty($fileName))
  {

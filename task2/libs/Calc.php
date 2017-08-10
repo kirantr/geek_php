@@ -14,10 +14,10 @@
              return $this->date1 = $date;
          } elseif (($date) == '')
          {
-             echo IS_NO_SET;
+             return $this->date1 = IS_NO_SET;
          } elseif (!is_numeric($date))
          {
-             echo NOT_DATA;
+             return $this->date1 = NOT_DATA;
          } else
          {
              return $this->date1 = $date;
@@ -46,10 +46,10 @@
              exit;
          } elseif (($date) == '')
          {
-             echo IS_NO_SET;
+             return $this->date2 = IS_NO_SET;
          } elseif (!is_numeric($date))
          {
-             echo NOT_DATA;
+             return $this->date2 = NOT_DATA;
          } else
          {
              return $this->date2 = $date;
@@ -99,7 +99,7 @@
              $sum = sqrt($this->getDate1());
          } else
          {
-             return SQRT_ERROR;
+             $sum = SQRT_ERROR;
          }
          return $sum;
      }
