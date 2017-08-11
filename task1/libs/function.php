@@ -31,14 +31,27 @@
      }
  }
 
- function arr($uploadPath, $fileName)
- {
+ 
+          function deleteFile($fileDelete)
+         {
+             $form = "<form method=post action=./index.php>
+              <input type=hidden name=del value=$fileDelete> 
+              <input type=submit value=Delete> 
+            </form>";
+             return $form;
+         }
+
+ 
+ 
+ function outputArray()
+ {         
+
  $fileName = $_FILES['UserFile']['name'];
-     $filesArray = scandir($uploadPath);
+     $filesArray = scandir(PATH_FOR_UP);
      for ($i = 2; $i < count($filesArray); ++$i)
      {
          $fileNameArr = $filesArray[$i];
-         $fileSize = filesize($uploadPath . $filesArray[$i]);
+         $fileSize = filesize(PATH_FOR_UP . $filesArray[$i]);
           $n = $i - 1;
 
          $byte = fileByte($fileSize);
@@ -49,16 +62,16 @@
              exit;
          }
 
-         $fileDelete = $uploadPath . $filesArray[$i];
+         $fileDelete = PATH_FOR_UP . $filesArray[$i];
+         $del = deleteFile($fileDelete) ;
 
-         echo '<td>' . delete($fileDelete) . "</td>";
-         $outArray[] = array();
-         array_push($outArray, $n, $fileNameArr, $byte, $fileDelete);
+         $outArray[] = array('num' => $n,
+             'fileName' => $fileNameArr,
+             'byte' => $byte,
+             'del' => $del);
      }
          
          return $outArray;
-//         print_r($outArray);
-//         echo '<br>';
  }
 
  if (!empty($_POST['del']))

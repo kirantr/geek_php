@@ -1,22 +1,22 @@
 <?php
 
  include_once './config.php';
- include_once './templates/index.php';
  include_once './libs/function.php';
 
- if (!is_dir($uploadPath))
+ if (!is_dir(PATH_FOR_UP))
  {
      echo 'There is no such directory ';
- } elseif (is_dir($uploadPath))
+ } 
+ elseif (is_dir(PATH_FOR_UP))
  {
-     $outArray=arr($uploadPath, $fileName);
-     print_r($outArray);
+     $outArray = outputArray();
  }
+ 
  if (!empty($fileName))
  {
-
-     $uploadFile = $uploadPath . basename($fileName);
-     if (copy($_FILES['UserFile']['tmp_name'], $uploadFile))
+//     echo "$fileName";
+     $uploadFile = PATH_FOR_UP . basename($fileName);
+     if (copy($_FILES['UserFile']['tmp_name'], PATH_FOR_UP))
      {
          echo "<h3>The file was successfully uploaded</h3>";
      } else
@@ -26,3 +26,4 @@
 //         }
      }
  }
+ include_once './templates/tmpl_index.php';
