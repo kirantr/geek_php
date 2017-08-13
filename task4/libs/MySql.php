@@ -5,7 +5,7 @@ require_once "Sql.php";
 class Mysql extends Sql
 {
  function __construct() {
-        $db_server = mysql_connect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
+	  $this->db_server = mysql_connect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
     }
     
     function result(){
