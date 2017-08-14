@@ -2,6 +2,8 @@
 
   class FileRead
   {
+		public $readFile;
+		public $filePath;
 
 		public function __construct($pathFile)
 		{
@@ -32,9 +34,6 @@
 							 } elseif ($flagStr == 'replace')
 							 {
 								  return $this->readFile [$inputStr] = $key . ' ' . $replaceStr;
-							 }
-							 {
-								  //123 
 							 }
 						}
 				  } else
