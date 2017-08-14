@@ -43,10 +43,10 @@
 
  
  
- function outputArray()
+ function outputArray($fileName)
  {         
 
- $fileName = $_FILES['UserFile']['name'];
+// $fileName = $_FILES['UserFile']['name'];
      $filesArray = scandir(PATH_FOR_UP);
      for ($i = 2; $i < count($filesArray); ++$i)
      {
@@ -58,8 +58,7 @@
 
          if ($fileName == $fileNameArr)
          {
-             echo 'Such file already exists <br>';
-             exit;
+             echo EXISTS_FILE;
          }
 
          $fileDelete = PATH_FOR_UP . $filesArray[$i];

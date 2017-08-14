@@ -10,9 +10,7 @@
             Select file: <input type=file name=UserFile> 
             <input type=submit value=Upload> 
         </form>
-
-        <?php
-         echo '<br><table class="table" border="1">
+<br><table class="table" border="1">
             <thead>
                 <tr>
                 <th>N</th>
@@ -21,8 +19,10 @@
                 <th>Delete</th>
                 </tr>
             </thead>
-            <tbody>';
-
+            <tbody>
+        <?php
+			 echo "$report";
+			 echo "$reportExists";
 
          foreach ($outArray as $key => $value)
          {
@@ -35,8 +35,7 @@
              ;
          }
 
-         echo '</tbody>';
         ?>
-
+				</tbody>
     </body>
 </html>

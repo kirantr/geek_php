@@ -2,26 +2,26 @@
 
  include_once './config.php';
  include_once './libs/function.php';
-
+ 
+$fileName = $_FILES['UserFile']['name'];
  if (!is_dir(PATH_FOR_UP))
  {
-     echo 'There is no such directory ';
+     $report = NO_SUCH;
  } 
  elseif (is_dir(PATH_FOR_UP))
  {
-     $outArray = outputArray();
+     $outArray = outputArray($fileName);
  }
  
  if (!empty($fileName))
  {
-//     echo "$fileName";
      $uploadFile = PATH_FOR_UP . basename($fileName);
-     if (copy($_FILES['UserFile']['tmp_name'], PATH_FOR_UP))
+     if (move_uploaded_file($_FILES['UserFile']['tmp_name'], $uploadFile))
      {
-         echo "<h3>The file was successfully uploaded</h3>";
+          $report = SUCCES_UPLOAD;
      } else
      {
-         echo "<h3>Error! Could not upload the file. Choose File </h3>";
+         $report = NO_SUCCES_UPLOAD;
 //    exit;
 //         }
      }
