@@ -1,14 +1,10 @@
 <?php
 
-<<<<<<< HEAD
-  class FileRead
-  {
-		public $readFile;
-		public $filePath;
-=======
  class FileRead
  {
->>>>>>> f91a0f3448bf26e5c87bfc09454cc97c9bdffdf0
+
+     public $readFile;
+     public $filePath;
 
      public function __construct($pathFile)
      {
@@ -22,40 +18,15 @@
      public function fileGetCont()
      {
          if (!empty($this->readFile))
-        {
-         $content = file_get_contents($this->readFile);
-         return $content;
-        }
-        else
-        {
-            echo  NOT_FILE;
-        }
+         {
+             $content = file_get_contents($this->readFile);
+             return $content;
+         } else
+         {
+             echo NOT_FILE;
+         }
      }
 
-<<<<<<< HEAD
-		public function readArrayStr($inputStr, $flagStr, $replaceStr)
-		{
-			 foreach ($this->readFile as $key => $stringValue)
-			 {
-				  if (is_numeric($inputStr))
-				  {
-						if ($key == $inputStr)
-						{
-							 if ($flagStr == 'read')
-							 {
-								  return $key . ' ' . $stringValue;
-							 } elseif ($flagStr == 'replace')
-							 {
-								  return $this->readFile [$inputStr] = $key . ' ' . $replaceStr;
-							 }
-						}
-				  } else
-				  {
-						return NOT_NUM;
-				  }
-			 }
-		}
-=======
      public function readArrayStr($inputStr, $flagStr, $replaceStr)
      {
          foreach ($this->readFile as $key => $stringValue)
@@ -70,8 +41,6 @@
                      } elseif ($flagStr == 'replace')
                      {
                          return $this->readFile [$inputStr] = $key . ' ' . $replaceStr;
-                     } {
-                         //123 
                      }
                  }
              } else
@@ -80,7 +49,6 @@
              }
          }
      }
->>>>>>> f91a0f3448bf26e5c87bfc09454cc97c9bdffdf0
 
      public function readArraySymb($inputStr, $inputSymb, $flagSymb, $repSymb)
      {
