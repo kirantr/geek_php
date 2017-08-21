@@ -2,24 +2,29 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <title>Task3</title>
     </head>
     <body>
         <div class="container center-block ">
-            <h1>String/Symbol chenger</h1>
+            <div class="col-md-offset-3 col-md-6">
+                <h1>String/Symbol chenger</h1>
+            </div>
+            <div class="col-md-offset-2 col-md-8">
             <form  class="form-inline" method="post"> 
-                Number string for output:
-                <input class="input-sm"type="text" name="inputStr"><br>
-                Number symbol for output:
-                <input class="input-sm" type="text" name="inputSymb"><br> 
-                Number string for replace:
-                <input class="input-sm" type="text" name="repStr"><br>
-                Number symbol for replace:
-                <input class="input-sm" type="text" name="repSymb"><br> 
+                <h3>Number string for output:</h3>
+                <input class="input-sm"type="text" name="inputStr"><br> 
+                <h3>Number symbol for output:</h3>
+                <input class="input-sm" type="text" name="inputSymb"><br>
+                <h3>Number string for replace:</h3>
+                <input class="input-sm" type="text" name="repStr">
+                <h3>Number symbol for replace:</h3>
+                <input class="input-sm" type="text" name="repSymb"><br><br> 
                 <input type=submit value="Show"> 
             </form>
+            </div>
+            <div class="col-md-offset-2 col-md-8">
 
             <?php
              echo '<h3>File contents:</h3>'
@@ -57,6 +62,7 @@
              $cont = $cont1 . $cont2 . $cont3 . $cont4;
              $objFileRead->saveContent($cont, $pathFileModif, $repStr, $repSymb);
             ?>
+        </div>
         </div>
     </body>
 </html>
