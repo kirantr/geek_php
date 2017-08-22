@@ -12,8 +12,6 @@ if (!is_dir(PATH_FOR_UP))
     $report = NO_SUCH;
 } elseif (is_dir(PATH_FOR_UP))
 {
-    $outArray = outputArray($fileName);
-// }
 
     if (!empty($fileName))
     {
@@ -24,8 +22,9 @@ if (!is_dir(PATH_FOR_UP))
         } else
         {
             $report = NO_SUCCES_UPLOAD;
-//    exit;
         }
     }
+        $outArray = outputArray($fileName);
+
 }
 include_once './templates/tmpl_index.php';
