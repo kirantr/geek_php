@@ -27,7 +27,7 @@
 
         echo fileGetCont($pathFile) . '<br>';
             
-        <h3>Output content:</h3>
+        echo '<h3>Output content:</h3>';
         foreach ($objFileRead->readFile as $key => $stringValue)
         {
             echo "$stringValue" . '<br>';
