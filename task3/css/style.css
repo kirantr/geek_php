@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+
+.container{
+    background: #bce8f1;
+}
+
+
+button{
+    background: #e3e3e3;
+    height: 60px;
+    width: 60px;
+    font-size: 16px;
+    color: #761c19;
+}
+.btn-block{
+    text-align: center;
+}
+
+.output{
+    background: #d0e9c6;
+    padding-left: 90px;
+    color: #5cb85c;
+    font-size: 18px;
+=======
 .text{
     background: greenyellow;
+>>>>>>> cba58c82ad22c9980707b0c7ca1d96ef75eb3d96
 }

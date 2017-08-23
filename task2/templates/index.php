@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/style.css" rel="stylesheet">
 
         <title>Calculator</title>
     </head>
@@ -108,7 +107,7 @@
 
                  $objCalc->setDate1($date1, $sel);
                  $objCalc->setDate2($date2, $sel);
-                 echo '<tr class="output"><td>' 
+                 echo '<tr class="output"><td>'
                  . $objCalc->getDate1();
                  echo "$sel";
                  echo $objCalc->getDate2();

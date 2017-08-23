@@ -1,1 +1,6 @@
+<<<<<<< HEAD
+1 This is the second string. Vestibulum hendrerit felis non est ornare, vitae finibus urna
+1 h1 This is a modified stringM
+=======
 Input the numeric<br>Input the numeric<br>Input the numeric<br>Input the numeric<br>
+>>>>>>> cba58c82ad22c9980707b0c7ca1d96ef75eb3d96
