@@ -24,10 +24,10 @@
         </form>
             <h3>File content:</h3>
         <?php
-        echo'';
 
-        echo fileGetCont($pathFile) ;
-
+        echo fileGetCont($pathFile) . '<br>';
+            
+        <h3>Output content:</h3>
         foreach ($objFileRead->readFile as $key => $stringValue)
         {
             echo "$stringValue" . '<br>';
