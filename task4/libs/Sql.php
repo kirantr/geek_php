@@ -13,6 +13,7 @@ class Sql
         var_dump($flag);
         return $this;
     }
+
     public function select($select)
     {
         $this->select = 'SELECT' . $select;
@@ -69,7 +70,10 @@ class Sql
     public function exec()
     {
         if (
-                !empty($this->select) && !empty($this->from) && !empty($this->where) && $this->flag == "select"
+                !empty($this->select) 
+                && !empty($this->from) 
+                && !empty($this->where) 
+                && $this->flag == "select"
         )
         {
             $this->query = $this->select . $this->from . $this->where;
@@ -81,23 +85,29 @@ class Sql
 //            return NO_EXEC;
         }
 
-        if ((!empty($this->insert)) && (!empty($this->values)))
+        if ((!empty($this->insert)) 
+                && (!empty($this->values)))
         {
 //            $this->query = $this->insert . $this->values;
 //            return $this->query;
         }
 
         if (
-                !empty($this->delete) && !empty($this->from) && !empty($this->where)
+                !empty($this->delete) 
+                && !empty($this->from) 
+                && !empty($this->where)
         )
         {
-            $this->query = $this->delete . $this->from . $this->where;
+//            $this->query = $this->delete . $this->from . $this->where;
 //             var_dump($this->query) ;
-            return $this->query;
+//            return $this->query;
         }
 
         if (
-                !empty($this->update) && !empty($this->set) && !empty($this->where)
+                !empty($this->update) 
+                && !empty($this->set) 
+                && !empty($this->where)
+                && $this->flag == "update"
         )
         {
 

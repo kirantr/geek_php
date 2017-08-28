@@ -14,16 +14,21 @@ class Mysql extends Sql
         parent::exec();
         if (isset($this->query))
         {
-
             $result = mysql_query($this->query, $this->db_server);
-//            var_dump($this->query);
-            $this->stack = array();
-            while ($row = mysql_fetch_row($result, MYSQL_ASSOC))
+            if (mysql_num_rows($result))
             {
-                array_push($this->stack, $row);
-            }
+                var_dump($result);
+                $this->stack = array();
+                while ($row = mysql_fetch_row($result, MYSQL_ASSOC))
+                {
+                    array_push($this->stack, $row);
+                }
 //         var_dump($this->stack) ;
-            return $this->stack;
+                return $this->stack;
+            } else
+            {
+                echo 'FALSE';
+            }
         }
     }
 
