@@ -9,7 +9,8 @@
     </head>
     <body>
         <form method="post"  action="index.php">
-            <p><input type="checkbox" name="flag" value="select" checked> Select</p>
+            <p><input type="text" name="text" value="Input Data"> </p>
+            <p><input type="radio" name="flag" value="select" checked> Select</p>
             <p><input type="radio" name="flag" value="insert"> Insert</p>
             <p><input type="radio" name="flag" value="delete"> Delete</p>
             <p><input type="radio" name="flag" value="update"> Update</p>
@@ -21,21 +22,34 @@
             $objMySQL->flag($_POST['flag']);
 
 //INSERT  MySQL
-//$insertMySQL = $objMySQL->insert(NAME_TABLE, "`key`, `data`")->values('user7', 'value_user7_add')->exec();
+            if ($_POST['flag'] == 'insert')
+            {
+                $insertMySQL = $objMySQL->insert(NAME_TABLE, "`key`, `data`")->values('user7', $_POST['text'])->exec();
+                echo 'Data inserted';
+            }
 
 //DELETE
-//$deletMySQL = $objMySQL->delete()->from(NAME_TABLE)->where('user8', "`key`")->exec();
-
-//UPDATE
-$updateMySQL = $objMySQL->update(NAME_TABLE)->set('`data`', 'Update data')
-                ->where('user7', "`key`")->exec();
-
-//SELECT
-            $selectMySQL = $objMySQL->select("`key`, `data`")->from(NAME_TABLE)->where('user7', "`key`")->exec();
-//            var_dump($selectMySQL);
-            foreach ($selectMySQL as $value)
+            if ($_POST['flag'] == 'delete')
             {
-                echo "<br>" . $value['key'] . ' ' . $value['data'] . "<br>";
+                $deletMySQL = $objMySQL->delete()->from(NAME_TABLE)->where('user7', "`key`")->exec();
+                echo 'Data deleted';
+            }
+//UPDATE
+            if ($_POST['flag'] == 'update')
+            {
+                $updateMySQL = $objMySQL->update(NAME_TABLE)->set('`data`', $_POST['text'])
+                                ->where('user7', "`key`")->exec();
+                echo 'Data updated';
+            }
+//SELECT
+            if ($_POST['flag'] == 'select')
+            {
+                $selectMySQL = $objMySQL->select("`key`, `data`")->from(NAME_TABLE)->where('user7', "`key`")->exec();
+//            var_dump($selectMySQL);
+                foreach ($selectMySQL as $value)
+                {
+                    echo "<br>" . $value['key'] . ' ' . $value['data'] . "<br>";
+                }
             }
 
 //            echo $_POST['flag'] . '<br>';

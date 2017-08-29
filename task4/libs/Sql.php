@@ -14,6 +14,7 @@ class Sql
         return $this;
     }
 
+//SELECT
     public function select($select)
     {
         $this->select = 'SELECT' . $select;
@@ -34,11 +35,6 @@ class Sql
 
     public function insert($table, $data)
     {
-//        if ($table == NAME_TABLE) {
-//            $keyData = '(key, data)';
-//        } else {
-//            $keyData = '(`key`, `data`)';
-//        }
         $this->insert = "INSERT INTO " . "$table  ($data)";
         return $this;
     }
@@ -48,6 +44,7 @@ class Sql
         $this->values = " VALUES ('" . $key . "', '" . $data . "')";
         return $this;
     }
+//DELETE
 
     public function delete()
     {
@@ -55,6 +52,7 @@ class Sql
         return $this;
     }
 
+//UPDATE
     public function update($table)
     {
         $this->update = "UPDATE " . $table;
@@ -67,8 +65,10 @@ class Sql
         return $this;
     }
 
+    //EXEC
     public function exec()
     {
+//SELECT
         if (
                 !empty($this->select) 
                 && !empty($this->from) 
@@ -81,28 +81,33 @@ class Sql
             return $this->query;
         } else
         {
-//            echo 'NO_EXEC';
-//            return NO_EXEC;
         }
 
-        if ((!empty($this->insert)) 
-                && (!empty($this->values)))
+//INSERT
+        if (
+                !empty($this->insert) 
+                && !empty($this->values)
+                && $this->flag == "insert"
+                )
         {
-//            $this->query = $this->insert . $this->values;
-//            return $this->query;
+            $this->query = $this->insert . $this->values;
+            return $this->query;
         }
 
+//DELETE
         if (
                 !empty($this->delete) 
                 && !empty($this->from) 
                 && !empty($this->where)
+                && $this->flag == "delete"
         )
         {
-//            $this->query = $this->delete . $this->from . $this->where;
+            $this->query = $this->delete . $this->from . $this->where;
 //             var_dump($this->query) ;
-//            return $this->query;
+            return $this->query;
         }
 
+//UPDATE
         if (
                 !empty($this->update) 
                 && !empty($this->set) 

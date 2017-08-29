@@ -1,12 +1,11 @@
 <?php
 
-class Mysql extends Sql
+class PostgreSQL extends Sql
 {
-    protected $dbServer;
+    protected $dbServerPg;
             function __construct()
     {
-        $this->dbServer = mysql_connect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
-        mysql_select_db(DBNAME) or die(mysql_error());
+        $this->dbServerPg = pg_connect(PG_SERVER) or die(pg_last_error());
     }
 
     public function exec()
@@ -14,7 +13,7 @@ class Mysql extends Sql
         parent::exec();
         if (isset($this->query))
         {
-            $result = mysql_query($this->query, $this->dbServer);
+            $result = pg_query($this->dbServerPg, $this->query);
 //                var_dump($result);
             if (!is_bool($result))
             {
