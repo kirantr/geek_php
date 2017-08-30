@@ -6,6 +6,6 @@ include_once 'libs/MySql.php';
 include_once 'libs/PostgreSQL.php';
 //MYSQL
 $objMySQL = new MySQL();
-$objPgSql = new PostgreSQL();
+$objPgSQL = new PostgreSQL();
 
 include_once './templates/tmpl_index.php';

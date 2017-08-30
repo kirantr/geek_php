@@ -57,10 +57,12 @@
         {
             
         }
-//             } else {echo NO_ROW;}
+        //             } else {echo NO_ROW;}
+                     
+            $objPgSQL->flag($_POST['flag']);
 
 //SELECT PG
-        $selectMySQL = $objPgSql->select("key, data")->from(PG_NAME_TABLE)->where('user7', "key")->exec();
+        $selectPgSQL = $objPgSQL->select("key, data")->from(PG_NAME_TABLE)->where('user7', "key")->exec();
         ?>
     </body>
 </html>

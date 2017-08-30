@@ -17,13 +17,13 @@ class Sql
 //SELECT
     public function select($select)
     {
-        $this->select = 'SELECT' . $select;
+        $this->select = 'SELECT ' . $select;
         return $this;
     }
 
     public function from($table)
     {
-        $this->from = 'FROM ' . $table;
+        $this->from = ' FROM ' . $table;
         return $this;
     }
 
@@ -77,7 +77,7 @@ class Sql
         )
         {
             $this->query = $this->select . $this->from . $this->where;
-//             var_dump($this->query) ;
+             var_dump($this->query) ;
             return $this->query;
         } else
         {

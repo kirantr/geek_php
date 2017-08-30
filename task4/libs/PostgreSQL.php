@@ -14,12 +14,12 @@ class PostgreSQL extends Sql
         if (isset($this->query))
         {
             $result = pg_query($this->dbServerPg, $this->query);
-//                var_dump($result);
+                var_dump($result);
             if (!is_bool($result))
             {
-//                var_dump($result);
+                var_dump($result);
                 $this->stack = array();
-                while ($row = pg_fetch_row($result, PGSQL_ASSOC))
+                while ($row = pg_fetch_row($result))
                 {
                     array_push($this->stack, $row);
                 }
@@ -29,10 +29,10 @@ class PostgreSQL extends Sql
         }
     }
 
-    public function __destruct()
-    {
-        mysql_close($this->dbServer);
-    }
+//    public function __destruct()
+//    {
+//        pg_close($this->dbServer);
+//    }
 
 }
 
