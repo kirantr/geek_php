@@ -28,20 +28,20 @@
                 echo 'Data inserted';
             }
 
-//DELETE
+//DELETE MySQL
             if ($_POST['flag'] == 'delete')
             {
                 $deletMySQL = $objMySQL->delete()->from(NAME_TABLE)->where('user7', "`key`")->exec();
                 echo 'Data deleted';
             }
-//UPDATE
+//UPDATE MySQL
             if ($_POST['flag'] == 'update')
             {
                 $updateMySQL = $objMySQL->update(NAME_TABLE)->set('`data`', $_POST['text'])
                                 ->where('user7', "`key`")->exec();
                 echo 'Data updated';
             }
-//SELECT
+//SELECT MySQL
             if ($_POST['flag'] == 'select')
             {
                 $selectMySQL = $objMySQL->select("`key`, `data`")->from(NAME_TABLE)->where('user7', "`key`")->exec();
@@ -58,6 +58,9 @@
             
         }
 //             } else {echo NO_ROW;}
+
+//SELECT PG
+        $selectMySQL = $objPgSql->select("key, data")->from(PG_NAME_TABLE)->where('user7', "key")->exec();
         ?>
     </body>
 </html>

@@ -3,8 +3,9 @@
 include_once './config.php';
 include_once 'libs/Sql.php';
 include_once 'libs/MySql.php';
+include_once 'libs/PostgreSQL.php';
 //MYSQL
 $objMySQL = new MySQL();
-//$objMySQL -> check(1);
+$objPgSql = new PostgreSQL();
 
 include_once './templates/tmpl_index.php';

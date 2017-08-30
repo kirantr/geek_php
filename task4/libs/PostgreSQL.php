@@ -19,7 +19,7 @@ class PostgreSQL extends Sql
             {
 //                var_dump($result);
                 $this->stack = array();
-                while ($row = mysql_fetch_row($result, MYSQL_ASSOC))
+                while ($row = pg_fetch_row($result, PGSQL_ASSOC))
                 {
                     array_push($this->stack, $row);
                 }
