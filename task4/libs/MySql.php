@@ -17,8 +17,8 @@ class Mysql extends Sql
         {
             $result = mysql_query($this->query, $this->dbServer);
                 var_dump('<br>MySQL= '. $this->quer);
-//            if (!is_bool($result))
-//            {
+            if (!is_bool($result))
+            {
 //                var_dump($result);
                 $this->stack = array();
                 while ($row = mysql_fetch_row($result, MYSQL_ASSOC))
@@ -27,7 +27,7 @@ class Mysql extends Sql
                 }
 //         var_dump($this->stack) ;
                 return $this->stack;
-//            } 
+            } 
         }
     }
 

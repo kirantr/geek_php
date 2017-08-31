@@ -10,6 +10,8 @@
     <body>
         <form method="post"  action="index.php">
             <p><input type="text" name="text" value="Input Data"> </p>
+            <p><input type="radio" name="db" value="mysql" checked> MySQL
+            <input type="radio" name="db" value="pg"> PostgreSQL</p>
             <p><input type="radio" name="flag" value="select" checked> Select</p>
             <p><input type="radio" name="flag" value="insert"> Insert</p>
             <p><input type="radio" name="flag" value="delete"> Delete</p>
@@ -24,14 +26,40 @@
 //INSERT  MySQL
              if ($_POST['flag'] == 'insert')
              {
-                 $insertMySQL = $objMySQL->insert(NAME_TABLE, "`key`, `data`")->values('user7', $_POST['text'])->exec();
-                 echo 'Data inserted';
+              if ($_POST['db'] == 'mysql')
+             {
+                $key = "`key`, `data`";
+                $nameTable = NAME_TABLE;
+                 $objMySQL->insert($nameTable, $key)->values('user7', $_POST['text'])->exec();
+                 echo 'MySql data inserted';
              }
+              elseif($_POST['db'] == 'pg')
+              {
+              
+                $key = "key, data";
+                $nameTable = PG_NAME_TABLE;
+                $objPgSQL->insert($nameTable, $key)->values('user7', $_POST['text'])->exec();
+                 echo 'PostgreSql data inserted';
+             }
+              }    
 
 //DELETE MySQL
              if ($_POST['flag'] == 'delete')
              {
-                 $deletMySQL = $objMySQL->delete()->from(NAME_TABLE)->where('user7', "`key`")->exec();
+               if ($_POST['db'] == 'mysql')
+             {
+                $key = "`key`";
+                $nameTable = NAME_TABLE;
+                $objSQL = $objMySQL; 
+             }            
+               elseif($_POST['db'] == 'pg')
+              {
+              
+                $key = "key";
+                $nameTable = PG_NAME_TABLE;
+                $objSQL = $objPgSQL; 
+              }    
+               $objSQL ->delete()->from($nameTable)->where('user7', $key)->exec();
                  echo 'Data deleted';
              }
 //UPDATE MySQL
@@ -61,14 +89,19 @@
 
          $objPgSQL->flag($_POST['flag']);
 
-//SELECT PG
+         //SELECT PG
+         
+             if ($_POST['flag'] == 'select')
+             {
          $selectPgSQL = $objPgSQL->select("key, data")->from(PG_NAME_TABLE)->where('user7', "key")->exec();
 
          var_dump($selectPgSQL);
+         $i=0;
          foreach ($selectPgSQL as $valuePg)
          {
-             echo "<br>" . $valuePg['key'] . ' ' . $valuePg['data'] . "<br>";
-         }
+             echo "<br>" . $valuePg[$i] . ' ' . $valuePg[$i+1] . "<br>";
+             $i++;
+         }}
         ?>
     </body>
 </html>

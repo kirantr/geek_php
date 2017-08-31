@@ -10,9 +10,9 @@ class PostgreSQL extends Sql
 
     public function exec()
     {
-                var_dump($this->query);
-        parent::exec();
-        if (isset($this->query))
+                      parent::exec();
+          var_dump('<br>PgSQL= '. $this->query);
+if (isset($this->query))
         {
             $result = pg_query($this->query);
                 var_dump('<br>PgSQL= '. $result);

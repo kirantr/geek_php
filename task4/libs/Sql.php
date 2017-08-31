@@ -10,11 +10,11 @@ class Sql
     public function flag($flag)
     {
         $this->flag = $flag;
-        var_dump('<br>flag= '. $flag);
+        var_dump('<br>flag Sql= '. $flag);
         return $this;
     }
 
-//SELECT
+
     public function select($select)
     {
         $this->select = 'SELECT ' . $select;
@@ -36,12 +36,14 @@ class Sql
     public function insert($table, $data)
     {
         $this->insert = "INSERT INTO " . "$table  ($data)";
+       var_dump($this->insert) ;
         return $this;
     }
 
     public function values($key, $data)
     {
         $this->values = " VALUES ('" . $key . "', '" . $data . "')";
+       var_dump($this->values) ;
         return $this;
     }
 //DELETE
@@ -91,6 +93,7 @@ class Sql
                 )
         {
             $this->query = $this->insert . $this->values;
+            var_dump('<br>SQL= '. $this->query) ;
             return $this->query;
         }
 
