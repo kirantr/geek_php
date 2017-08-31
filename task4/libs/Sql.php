@@ -10,7 +10,7 @@ class Sql
     public function flag($flag)
     {
         $this->flag = $flag;
-        var_dump($flag);
+        var_dump('<br>flag= '. $flag);
         return $this;
     }
 
@@ -77,7 +77,7 @@ class Sql
         )
         {
             $this->query = $this->select . $this->from . $this->where;
-             var_dump($this->query) ;
+             var_dump('<br>SQL= '. $this->query) ;
             return $this->query;
         } else
         {
