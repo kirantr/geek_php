@@ -8,100 +8,61 @@
         <title></title>
     </head>
     <body>
-        <form method="post"  action="index.php">
-            <p><input type="text" name="text" value="Input Data"> </p>
-            <p><input type="radio" name="db" value="mysql" checked> MySQL
-            <input type="radio" name="db" value="pg"> PostgreSQL</p>
-            <p><input type="radio" name="flag" value="select" checked> Select</p>
-            <p><input type="radio" name="flag" value="insert"> Insert</p>
-            <p><input type="radio" name="flag" value="delete"> Delete</p>
-            <p><input type="radio" name="flag" value="update"> Update</p>
-            <p><input type="submit" value="Send"></p>
-        </form>
-        <?php
-         if (isset($_POST['flag']))
-         {
-             $objMySQL->flag($_POST['flag']);
-
-//INSERT  MySQL
-             if ($_POST['flag'] == 'insert')
-             {
-              if ($_POST['db'] == 'mysql')
-             {
-                $key = "`key`, `data`";
-                $nameTable = NAME_TABLE;
-                 $objMySQL->insert($nameTable, $key)->values('user7', $_POST['text'])->exec();
-                 echo 'MySql data inserted';
-             }
-              elseif($_POST['db'] == 'pg')
-              {
-              
-                $key = "key, data";
-                $nameTable = PG_NAME_TABLE;
-                $objPgSQL->insert($nameTable, $key)->values('user7', $_POST['text'])->exec();
-                 echo 'PostgreSql data inserted';
-             }
-              }    
-
-//DELETE MySQL
-             if ($_POST['flag'] == 'delete')
-             {
-               if ($_POST['db'] == 'mysql')
-             {
-                $key = "`key`";
-                $nameTable = NAME_TABLE;
-                $objSQL = $objMySQL; 
-             }            
-               elseif($_POST['db'] == 'pg')
-              {
-              
-                $key = "key";
-                $nameTable = PG_NAME_TABLE;
-                $objSQL = $objPgSQL; 
-              }    
-               $objSQL ->delete()->from($nameTable)->where('user7', $key)->exec();
-                 echo 'Data deleted';
-             }
-//UPDATE MySQL
-             if ($_POST['flag'] == 'update')
-             {
-                 $updateMySQL = $objMySQL->update(NAME_TABLE)->set('`data`', $_POST['text'])
-                         ->where('user7', "`key`")->exec();
-                 echo 'Data updated';
-             }
-//SELECT MySQL
+        <div class="col-md-offset-4 col-md-7">
+            <h2>MySQL & PostgreSQL</h2>
+        </div>
+        <div class="container center-block">
+            <form method="post"  action="index.php">
+                <div class="col-md-offset-4 col-md-7">
+                    <p><input type="text" name="text" value="Input Data"> </p>
+                </div>
+                <div class="col-md-offset-4 col-md-8">
+                    <p><input type="radio" name="db" value="mysql" checked> MySQL
+                        <span class="col-md-offset-2">  <input type="radio" name="db" value="pg"> PostgreSQL</p></span>
+                    </div>
+                <div class="col-md-offset-3 col-md-9">
+                    <br><p><input type="radio" name="flag" value="select" checked> Select</p>
+                    <p><input type="radio" name="flag" value="insert"> Insert</p>
+                    <p><input type="radio" name="flag" value="delete"> Delete</p>
+                    <p><input type="radio" name="flag" value="update"> Update</p>
+                    <div class="col-md-offset-3 col-md-8"> 
+                        <p><input type="submit" value="Send"></p><br>
+                    </div>
+                </div>
+            </form>
+            <?php
+//SELECT
              if ($_POST['flag'] == 'select')
              {
-                 $selectMySQL = $objMySQL->select("`key`, `data`")->from(NAME_TABLE)->where('user7', "`key`")->exec();
-            var_dump($selectMySQL);
+                 $selectMySQL = $objMySQL->select("`key`, `data`")->
+                         from(NAME_TABLE)->where('user7', "`key`")->exec();
                  foreach ($selectMySQL as $value)
                  {
-                     echo "<br>" . $value['key'] . ' ' . $value['data'] . "<br>";
+                     echo
+                     '<div class="col-md-offset-4 col-md-4 output">'
+                     . $value['key'] . ' ' . $value['data']
+                     . "</div>";
                  }
              }
 
-//            echo $_POST['flag'] . '<br>';
-         } else
-         {
-             
-         }
-         //             } else {echo NO_ROW;}
+             $objPgSQL->flag($_POST['flag']);
 
-         $objPgSQL->flag($_POST['flag']);
+//SELECT PG
 
-         //SELECT PG
-         
              if ($_POST['flag'] == 'select')
              {
-         $selectPgSQL = $objPgSQL->select("key, data")->from(PG_NAME_TABLE)->where('user7', "key")->exec();
+                 $selectPgSQL = $objPgSQL->select("key, data")->
+                         from(PG_NAME_TABLE)->where('user7', "key")->exec();
 
-         var_dump($selectPgSQL);
-         $i=0;
-         foreach ($selectPgSQL as $valuePg)
-         {
-             echo "<br>" . $valuePg[$i] . ' ' . $valuePg[$i+1] . "<br>";
-             $i++;
-         }}
-        ?>
+                 foreach ($selectPgSQL as $valuePg)
+                 {
+                     echo
+                     '<div class="col-md-offset-4 col-md-4 output">'
+                     . $valuePg['key'] . ' ' . $valuePg['data']
+                     . "</div>";
+                 }
+             }
+            ?>
+        </div>
     </body>
 </html>

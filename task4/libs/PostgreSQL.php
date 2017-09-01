@@ -1,40 +1,37 @@
 <?php
 
-class PostgreSQL extends Sql
-{
-    protected $dbServerPg;
-            function __construct()
+ class PostgreSQL extends Sql
+ {
+
+     protected $dbServerPg;
+
+     function __construct()
+     {
+         $this->dbServerPg = pg_connect(PG_SERVER) or die(pg_last_error());
+     }
+
+     public function exec()
+     {
+         parent::exec();
+         if (isset($this->query))
+         {
+             $result = pg_query($this->query);
+             if (!is_bool($result))
+             {
+                 $this->stack = array();
+                 while ($row = pg_fetch_array($result))
+                 {
+                     array_push($this->stack, $row);
+                 }
+                 return $this->stack;
+             }
+         }
+     }
+
+    public function __destruct()
     {
-        $this->dbServerPg = pg_connect(PG_SERVER) or die(pg_last_error());
+        pg_close($this->dbServer);
     }
-
-    public function exec()
-    {
-                      parent::exec();
-          var_dump('<br>PgSQL= '. $this->query);
-if (isset($this->query))
-        {
-            $result = pg_query($this->query);
-                var_dump('<br>PgSQL= '. $result);
-            if (!is_bool($result))
-            {
-//                var_dump($result);
-                $this->stack = array();
-                while ($row = pg_fetch_row($result))
-                {
-                    array_push($this->stack, $row);
-                }
-//         var_dump($this->stack) ;
-                return $this->stack;
-            } 
-        }
-    }
-
-//    public function __destruct()
-//    {
-//        pg_close($this->dbServer);
-//    }
-
-}
+ }
 
 ?>
