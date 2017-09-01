@@ -76,11 +76,7 @@
          {
              $this->query = $this->select . $this->from . $this->where;
              return $this->query;
-         } else
-         {
-             
-         }
-
+         } 
 //INSERT
          if (
              !empty($this->insert) 
