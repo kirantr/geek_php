@@ -30,7 +30,7 @@
 
     public function __destruct()
     {
-        pg_close($this->dbServer);
+        pg_close($this->dbServerPg);
     }
  }
 
