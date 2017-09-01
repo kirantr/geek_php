@@ -6,6 +6,7 @@
      private $select;
      private $from;
      private $where;
+     private $distinct;
 
      public function flag($flag)
      {
@@ -18,6 +19,13 @@
          $this->select = 'SELECT ' . $select;
          return $this;
      }
+//DISTINCT 
+     public function distinct($distinct)
+     {
+         $this->distinct = 'DISTINCT ' . $distinct;
+         return $this;
+     }
+
 
      public function from($table)
      {
@@ -76,11 +84,8 @@
          {
              $this->query = $this->select . $this->from . $this->where;
              return $this->query;
-         } else
-         {
-             
          }
-
+         
 //INSERT
          if (
              !empty($this->insert) 
@@ -114,7 +119,23 @@
              $this->query = $this->update . $this->set . $this->where;
              return $this->query;
          }
-     }
+//DISTINCT 
+         if (
+             !empty($this->select) 
+             && !empty($this->distinct) 
+             && !empty($this->from) 
+             && !empty($this->where) 
+         )
+         {
+             $this->query = $this->select  
+                 . $this->distinct 
+                 . $this->from 
+                 . $this->where
+                              ;
+             return $this->query;
+         }
+
+    }
 
  }
 

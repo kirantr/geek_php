@@ -22,7 +22,7 @@
                     </div>
                 <div class="col-md-offset-3 col-md-9">
                     <br><p><input type="radio" name="flag" value="select" checked> Select</p>
-                    <p><input type="radio" name="flag" value="insert"> Insert</p>
+                    <p><input type="radio" name="flag" value="distinct"> Distinct</p>
                     <p><input type="radio" name="flag" value="delete"> Delete</p>
                     <p><input type="radio" name="flag" value="update"> Update</p>
                     <div class="col-md-offset-3 col-md-8"> 
@@ -36,16 +36,13 @@
              {
                  $selectMySQL = $objMySQL->select("`key`, `data`")->
                          from(NAME_TABLE)->where('user7', "`key`")->exec();
-                 foreach ($selectMySQL as $value)
-                 {
                      echo
-                     '<div class="col-md-offset-4 col-md-4 output">'
-                     . $value['key'] . ' ' . $value['data']
+                     '<div class="col-md-offset-2 col-md-7 output">'
+                     .   $selectMySQL
                      . "</div>";
-                 }
              }
 
-             $objPgSQL->flag($_POST['flag']);
+//             $objPgSQL->flag($_POST['flag']);
 
 //SELECT PG
 
@@ -53,15 +50,35 @@
              {
                  $selectPgSQL = $objPgSQL->select("key, data")->
                          from(PG_NAME_TABLE)->where('user7', "key")->exec();
-
-                 foreach ($selectPgSQL as $valuePg)
-                 {
                      echo
-                     '<div class="col-md-offset-4 col-md-4 output">'
-                     . $valuePg['key'] . ' ' . $valuePg['data']
+                     '<div class="col-md-offset-2 col-md-7 output">'
+                     . $selectPgSQL                     
                      . "</div>";
-                 }
              }
+
+      if ($_POST['flag'] == 'distinct')
+     {
+         if ($_POST['db'] == 'mysql')
+         {
+             $key = "`key`, `data`";
+             $nameTable = NAME_TABLE;
+             $objSQL = $objMySQL;
+         } elseif ($_POST['db'] == 'pg')
+         {
+
+             $key = "key, data";
+             $nameTable = PG_NAME_TABLE;
+             $objSQL = $objPgSQL;
+         }
+         $out = $objSQL->select('')->
+             distinct($key)->
+             from($nameTable)->
+             where('user7', "`key`")->
+             exec();
+     }
+      echo '<div class="col-md-offset-2 col-md-7 output">'.
+$out. "</div>";
+            
             ?>
         </div>
     </body>
