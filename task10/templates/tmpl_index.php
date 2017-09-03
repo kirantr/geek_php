@@ -8,77 +8,42 @@
         <title></title>
     </head>
     <body>
-        <div class="col-md-offset-4 col-md-7">
+        <div class="col-md-12">
+            <center>
             <h2>MySQL & PostgreSQL</h2>
+        </center>
         </div>
         <div class="container center-block">
             <form method="post"  action="index.php">
-                <div class="col-md-offset-4 col-md-7">
-                    <p><input type="text" name="text" value="Input Data"> </p>
-                </div>
+                <!--                <div class="col-md-offset-4 col-md-7">
+                                    <p><input type="text" name="text" value="Input Data"> </p>
+                                </div>-->
                 <div class="col-md-offset-4 col-md-8">
                     <p><input type="radio" name="db" value="mysql" checked> MySQL
                         <span class="col-md-offset-2">  <input type="radio" name="db" value="pg"> PostgreSQL</p></span>
-                    </div>
+                </div>
                 <div class="col-md-offset-3 col-md-9">
-                    <br><p><input type="radio" name="flag" value="select" checked> Select</p>
-                    <p><input type="radio" name="flag" value="distinct"> Distinct</p>
-                    <p><input type="radio" name="flag" value="delete"> Delete</p>
-                    <p><input type="radio" name="flag" value="update"> Update</p>
+                    <br><p><input type="radio" name="flag" value="distinct"checked> DISTINCT</p>
+                    <p><input type="radio" name="flag" value="inner_join" > INNER JOIN</p>
+                    <p><input type="radio" name="flag" value="leftJoin"> LEFT OUTER JOIN</p>
+                    <p><input type="radio" name="flag" value="rightJoin"> RIGHT OUTER JOIN</p>
+                    <p><input type="radio" name="flag" value="crossJoin"> CROSS JOIN</p>
+                    <p><input type="radio" name="flag" value="naturalJoin"> NATURAL JOIN</p>
                     <div class="col-md-offset-3 col-md-8"> 
                         <p><input type="submit" value="Send"></p><br>
                     </div>
                 </div>
             </form>
             <?php
-//SELECT
-             if ($_POST['flag'] == 'select')
-             {
-                 $selectMySQL = $objMySQL->select("`key`, `data`")->
-                         from(NAME_TABLE)->where('user7', "`key`")->exec();
-                     echo
-                     '<div class="col-md-offset-2 col-md-7 output">'
-                     .   $selectMySQL
-                     . "</div>";
-             }
+            if (
+                    isset($_POST['db']) || isset($_POST['flag'])
+            )
+            {
 
-//             $objPgSQL->flag($_POST['flag']);
-
-//SELECT PG
-
-             if ($_POST['flag'] == 'select')
-             {
-                 $selectPgSQL = $objPgSQL->select("key, data")->
-                         from(PG_NAME_TABLE)->where('user7', "key")->exec();
-                     echo
-                     '<div class="col-md-offset-2 col-md-7 output">'
-                     . $selectPgSQL                     
-                     . "</div>";
-             }
-
-      if ($_POST['flag'] == 'distinct')
-     {
-         if ($_POST['db'] == 'mysql')
-         {
-             $key = "`key`, `data`";
-             $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
-         } elseif ($_POST['db'] == 'pg')
-         {
-
-             $key = "key, data";
-             $nameTable = PG_NAME_TABLE;
-             $objSQL = $objPgSQL;
-         }
-         $out = $objSQL->select('')->
-             distinct($key)->
-             from($nameTable)->
-             where('user7', "`key`")->
-             exec();
-     }
-      echo '<div class="col-md-offset-2 col-md-7 output">'.
-$out. "</div>";
-            
+                echo '<div class="col-md-12 output"><center>' .
+                $output
+                . '</center></div>';
+            }
             ?>
         </div>
     </body>

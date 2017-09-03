@@ -1,71 +1,98 @@
 <?php
 
- include_once './config.php';
- include_once 'libs/Sql.php';
+include_once './config.php';
+include_once 'libs/Sql.php';
 //MYSQL
- $objMySQL = new SQL();
- $objPgSQL = new SQL();
+$objSQL = new SQL();
 
- include_once './templates/tmpl_index.php';
+            if (
+                    isset($_POST['db'])
+                   || isset($_POST['flag'])
+               )
+            {
+                if ($_POST['db'] == 'mysql')
+                {
+                    $key = "`key`";
+                    $data = "`data`";
+                    $value = "'user7'";
+                    $nameTableA = NAME_TABLE_A;
+                    $nameTableB = NAME_TABLE_B;
+                } elseif ($_POST['db'] == 'pg')
+                {
 
- if (isset($_POST['flag']))
- {
-     $objMySQL->flag($_POST['flag']);
+                    $key = "key";
+                    $data = "data";
+                    $value = "'user7'";
+                    $nameTableA = PG_NAME_TABLE_A;
+                    $nameTableB = PG_NAME_TABLE_B;
+                }
 
-//INSERT
-     if ($_POST['flag'] == 'insert')
-     {
-         if ($_POST['db'] == 'mysql')
-         {
-             $key = "`key`, `data`";
-             $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
-         } elseif ($_POST['db'] == 'pg')
-         {
+//DISTINCT
 
-             $key = "key, data";
-             $nameTable = PG_NAME_TABLE;
-             $objSQL = $objPgSQL;
-         }
-         $objSQL->insert($nameTable, $key)->values('user7', $_POST['text'])->exec();
-     }
+                if ($_POST['flag'] == 'distinct')
+                {
+                    $output = $objSQL->
+                            select('', '')->
+                            distinct($key, $data)->
+                            from($nameTableA)->
+                            where($value, $key)->
+                            exec();
+                }
 
-//DELETE
-     if ($_POST['flag'] == 'delete')
-     {
-         if ($_POST['db'] == 'mysql')
-         {
-             $key = "`key`";
-             $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
-         } elseif ($_POST['db'] == 'pg')
-         {
+// INNER JOIN
+                if ($_POST['flag'] == 'inner_join')
+                {
+                    $output = $objSQL->
+                            select($key, $data)->
+                            from($nameTableA)->
+                            innerJoin($nameTableB)->
+                            on($nameTableA, $nameTableB, $key)->
+                            exec();
+                }
 
-             $key = "key";
-             $nameTable = PG_NAME_TABLE;
-             $objSQL = $objPgSQL;
-         }
-         $objSQL->delete()->from($nameTable)->where('user7', $key)->exec();
-     }
-//UPDATE
-     if ($_POST['flag'] == 'update')
-     {
-         if ($_POST['db'] == 'mysql')
-         {
-             $key = "`key`";
-             $data = "`data`";
-             $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
-         } elseif ($_POST['db'] == 'pg')
-         {
+//LEFT OUTER JOIN
+                if ($_POST['flag'] == 'leftJoin')
+                {
+                    $output = $objSQL->
+                            select($key, $data)->
+                            from($nameTableA)->
+                            leftJoin($nameTableB)->
+                            on($nameTableA, $nameTableB, $value)->
+                            exec();
+                }
 
-             $key = "key";
-             $data = "data";
-             $nameTable = PG_NAME_TABLE;
-             $objSQL = $objPgSQL;
-         }
+//RIGHT  OUTER JOIN
+                if ($_POST['flag'] == 'rightJoin')
+                {
+                    $output = $objSQL->
+                            select($key, $data)->
+                            from($nameTableA)->
+                            rightJoin($nameTableB)->
+                            on($nameTableA, $nameTableB, $value)->
+                            exec();
+                }
 
-         $objSQL->update($nameTable)->set($data, $_POST['text'])
-             ->where('user7', $key)->exec();
-     }
- }
+//CROSS JOIN
+                if ($_POST['flag'] == 'crossJoin')
+                {
+                    $output = $objSQL->
+                            select($key, $data)->
+                            from($nameTableA)->
+                            crossJoin($nameTableB)->
+                            exec();
+                }
+
+//NATURAL JOIN
+                if ($_POST['flag'] == 'naturalJoin')
+                {
+                    $output = $objSQL->
+                            select($key, $data)->
+                            from($nameTableA)->
+                            naturalJoin($nameTableB)->
+                            exec();
+                }
+
+            }
+include_once './templates/tmpl_index.php';
+
+
