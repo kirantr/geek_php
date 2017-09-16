@@ -5,15 +5,15 @@
  include_once 'libs/MyTest.php';
  include_once 'libs/ActiveRecord.php';
 //MYSQL
- $objMySQL = new MyTest();
- $objAR = new ActiveRecord();
+ $objMyTest = new MyTest();
+ $objMyTest = new ActiveRecord();
 
  include_once './templates/tmpl_index.php';
 //               echo $objAR->getSelect();
 
  if (isset($_POST['flag']))
  {
-     $objMySQL->flag($_POST['flag']);
+     $objMyTest->flag($_POST['flag']);
 
 //INSERT
      if ($_POST['flag'] == 'insert')
@@ -22,7 +22,7 @@
          {
              $key = "`key`, `data`";
              $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
+             $objSQL = $objMyTest;
          } elseif ($_POST['db'] == 'pg')
          {
 
@@ -40,7 +40,7 @@
          {
              $key = "`key`";
              $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
+             $objSQL = $objMyTest;
          } elseif ($_POST['db'] == 'pg')
          {
 
@@ -58,7 +58,7 @@
              $key = "`key`";
              $data = "`data`";
              $nameTable = NAME_TABLE;
-             $objSQL = $objMySQL;
+             $objSQL = $objMyTest;
          } elseif ($_POST['db'] == 'pg')
          {
 

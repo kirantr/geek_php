@@ -3,9 +3,8 @@
  class ActiveRecord extends SQL
  {
 
-     protected $connectProp;
      protected $stack = array();
-     protected $dataRow = array();
+     protected $data = array();
 //     public $n;
 
                 public function __set($name, $value)
@@ -41,13 +40,16 @@
      public function getSelect()
      {
 //SELECT
-//         $query = "SELECT " . $this->data . " FROM " . NAME_TABLE;
-////         $result = mysqli_query($this->dbServer, $query);
-//         while ($row = mysqli_fetch_assoc($result))
-//         {
-//             $this->row[] = $row;
-//         }
-//         return $this->row;
+$dbServer = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME) or die(mysql_error());
+//$query = "SELECT " . 'user7' . " FROM " . NAME_TABLE;
+$query = "SELECT  *  FROM   MY_TEST";
+         $result = mysqli_query($dbServer, $query);
+         var_dump('$result= ', $result);
+         while ($row = mysqli_fetch_assoc($result))
+         {
+             $this->row[] = $row;
+         }
+         return $this->row;
      }
 
  }

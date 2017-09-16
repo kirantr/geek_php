@@ -35,7 +35,7 @@
 //SELECT
                 if ($_POST['flag'] == 'select')
                 {
-//                    $selectMySQL = $objMySQL->select("`key`, `data`")->
+//                    $selectMySQL = $objMyTest->select("`key`, `data`")->
 //                                    from(NAME_TABLE)->where('user7', "`key`")->exec();
 //                    foreach ($selectMySQL as $value)
 //                    {
@@ -47,8 +47,9 @@
                 }
             }
 // $objAR = new ActiveRecord();
-                $objAR->a = 1;
-//               echo $objAR->getSelect();
+                $objMyTest->a = 1;
+//                $objMyTest->data = 'user7';
+               echo $objMyTest->getSelect();
             ?>
         </div>
     </body>
