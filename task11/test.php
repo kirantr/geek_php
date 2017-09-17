@@ -8,15 +8,15 @@
     <body>
         <?php
 
-        $mysqli = new mysqli("localhost", "user1", "tuser1", "user1");
+        $link = new mysqli("localhost", "user1", "tuser1", "world");
 /* проверка соединения */
-if ($mysqli->connect_errno) {
+if (mysqli_connect_errno()) {
     printf("Не удалось подключиться: %s\n", $mysqli->connect_error);
     exit();
 }
 
 /* Создание таблицы не возвращает результирующего набора */
-if ($mysqli->query("CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
+if (mysqli_query($link, "CREATE TEMPORARY TABLE myCity LIKE City") === TRUE) {
     printf("Таблица myCity успешно создана.\n");
 }
 else
@@ -25,11 +25,12 @@ else
 }
 
 /* Select запросы возвращают результирующий набор */
-if ($result = $mysqli->query("SELECT Name FROM my_test LIMIT 10")) {
-    printf("Select вернул %d строк.\n", $result->num_rows);
+if ($result = mysqli_query($link, "SELECT * FROM City LIMIT 10")) {
+    printf("Select вернул %d строк.\n", mysqli_num_rows($result));
 
     /* очищаем результирующий набор */
-    $result->close();
+    mysqli_free_result($result);
+	 
 }
 else
 {
