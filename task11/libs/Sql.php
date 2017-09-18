@@ -6,6 +6,12 @@
      private $select;
      private $from;
      private $where;
+     private $insert;
+     private $values;
+     private $query;
+     private $delete;
+     private $update;
+     private $set;
 
      public function flag($flag)
      {
@@ -25,9 +31,9 @@
          return $this;
      }
 
-     public function where($value, $key)
+     public function where($key, $value)
      {
-         $this->where = " WHERE $key=" . "'" . $value . "'";
+         $this->where = " WHERE '$key'=" . "'" . $value . "'";
          return $this;
      }
 
@@ -39,8 +45,8 @@
 
      public function values($key, $data)
      {
-         $this->values = " VALUES ('" . $key . "', '" . $data . "')";
-         return $this;
+        $this->values = " VALUES ('" . $key . "', '" . $data . "')";
+        return $this;
      }
 
 //DELETE

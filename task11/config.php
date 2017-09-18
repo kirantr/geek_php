@@ -7,8 +7,6 @@
  define("DBPASS", "tuser1");
 
  define("NAME_TABLE", "MY_TEST");
+ define("NOT_CONNECT", "Could not connect: %s\n");
 
-//PostgreSQL
- define("PG_NAME_TABLE", "PG_TEST");
- define("PG_SERVER", "host=localhost dbname=user1 user=user1 password=user1z");
 ?>
