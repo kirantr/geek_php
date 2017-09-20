@@ -19,7 +19,7 @@
                 <div class="col-md-offset-4 col-md-8">
                     <p><input type="radio" name="db" value="mysql" checked> MySQL
                         <span class="col-md-offset-2">  <input type="radio" name="db" value="pg"> PostgreSQL</p></span>
-                    </div>
+                </div>
                 <div class="col-md-offset-3 col-md-9">
                     <br><p><input type="radio" name="flag" value="select" checked> Select</p>
                     <p><input type="radio" name="flag" value="insert"> Insert</p>
@@ -31,24 +31,19 @@
                 </div>
             </form>
             <?php
-//SELECT
-             if ($_POST['flag'] == 'select')
-             {
-                 $selectMySQL = $objMySQL->select("`key`, `data`")->
-                         from(NAME_TABLE)->where('user7', "`key`")->exec();
-                 foreach ($selectMySQL as $value)
-                 {
-                     echo
-                     '<div class="col-md-offset-4 col-md-4 output">'
-                     . $value['key'] . ' ' . $value['data']
-                     . "</div>";
-                 }
-             }
+            if (isset($selectMySQL))
+            {
+                foreach ($selectMySQL as $value)
+                {
+                    echo
+                    '<div class="col-md-offset-4 col-md-4 output">'
+                    . $value['key'] . ' ' . $value['data']
+                    . "</div>";
+                }
+            }
 
 //             $objPgSQL->flag($_POST['flag']);
-
 //SELECT PG
-
 //             if ($_POST['flag'] == 'select')
 //             {
 //                 $selectPgSQL = $objPgSQL->select("key, data")->

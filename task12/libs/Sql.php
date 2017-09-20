@@ -6,6 +6,11 @@
      private $select;
      private $from;
      private $where;
+     private $insert;
+     private $values;
+     private $delete;
+     private $update;
+     private $set;
 
      public function flag($flag)
      {
@@ -75,6 +80,7 @@
          )
          {
              $this->query = $this->select . $this->from . $this->where;
+             var_dump($this->query);
              return $this->query;
          } 
 //INSERT
@@ -85,6 +91,7 @@
          )
          {
              $this->query = $this->insert . $this->values;
+             var_dump($this->query);
              return $this->query;
          }
 

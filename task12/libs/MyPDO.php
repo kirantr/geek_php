@@ -5,14 +5,15 @@ class MyPDO extends Sql
 
     protected $pdo;
 
-    public function __construct()
+    public function __construct($db)
     {
 //        try
 //        {
-        if ('mysql' == $this->db)
+        if ('mysql' == $db)
         {
             $this->pdo = new PDO(DBDNS, DBUSER, DBPASS);
-        } elseif ('pg')
+        }
+        elseif ('pg')
         {
             $this->pdo = new PDO(PG_DNS);
         }
@@ -27,12 +28,16 @@ class MyPDO extends Sql
     {
         $sql = parent::exec();
         $result = $this->pdo->query($sql, PDO::FETCH_ASSOC);
-        $stack = array();
-        foreach ($result as $row)
+        var_dump('<br> $result= ', $result);
+        if (!is_bool($result))
         {
-            array_push($stack, $row);
+            $stack = array();
+            foreach ($result as $row)
+            {
+                array_push($stack, $row);
+            }
+            return $stack;
         }
-        return $stack;
     }
 
 }
