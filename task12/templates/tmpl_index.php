@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="col-md-offset-4 col-md-7">
-            <h2>MySQL & PostgreSQL</h2>
+            <h2>MySQL & PDO</h2>
         </div>
         <div class="container center-block">
             <form method="post"  action="index.php">
