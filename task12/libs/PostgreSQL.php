@@ -2,36 +2,31 @@
 
  class PostgreSQL extends Sql
  {
+    public $pdo;
 
-     protected $dbServerPg;
-
-     function __construct()
-     {
-         $this->dbServerPg = pg_connect(PG_SERVER) or die(pg_last_error());
-     }
-
-     public function exec()
-     {
-         parent::exec();
-         if (isset($this->query))
-         {
-             $result = pg_query($this->query);
-             if (!is_bool($result))
-             {
-                 $this->stack = array();
-                 while ($row = pg_fetch_array($result))
-                 {
-                     array_push($this->stack, $row);
-                 }
-                 return $this->stack;
-             }
-         }
-     }
-
-    public function __destruct()
+    public function exec()
     {
-        pg_close($this->dbServerPg);
+        $sql = parent::exec();
+        if ($this->flag == 'select')
+        {
+            $result = $this->pdo->query($sql, PDO::FETCH_ASSOC);
+            if (!is_bool($result))
+            {
+                $stack = array();
+                foreach ($result as $row)
+                {
+                    array_push($stack, $row);
+                }
+                return $stack;
+            }
+        }
+        else
+        {
+            $result = $this->pdo->exec($sql);
+        }
+//        var_dump('<br> $result= ', $result);
     }
+
  }
 
 ?>

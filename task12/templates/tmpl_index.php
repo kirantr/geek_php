@@ -31,9 +31,9 @@
                 </div>
             </form>
             <?php
-            if (isset($selectMySQL))
+            if (isset($selectMyPDO))
             {
-                foreach ($selectMySQL as $value)
+                foreach ($selectMyPDO as $value)
                 {
                     echo
                     '<div class="col-md-offset-4 col-md-4 output">'
@@ -42,21 +42,6 @@
                 }
             }
 
-//             $objPgSQL->flag($_POST['flag']);
-//SELECT PG
-//             if ($_POST['flag'] == 'select')
-//             {
-//                 $selectPgSQL = $objPgSQL->select("key, data")->
-//                         from(PG_NAME_TABLE)->where('user7', "key")->exec();
-//
-//                 foreach ($selectPgSQL as $valuePg)
-//                 {
-//                     echo
-//                     '<div class="col-md-offset-4 col-md-4 output">'
-//                     . $valuePg['key'] . ' ' . $valuePg['data']
-//                     . "</div>";
-//                 }
-//             }
             ?>
         </div>
     </body>
