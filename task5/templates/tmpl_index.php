@@ -32,14 +32,11 @@
                 </div>
             </form>
             <?php
-//SELECT
-            if ($_POST['flag'] == 'select')
+            if(isset($_POST['db']))
             {
-                $key = 'user7';
-                if ($_POST['db'] == 'mysql')
-                {
-                    $selectMySQL = $objMySQL->getData($key);
-
+//SELECT
+            if (isset($selectMySQL ))
+            {
                     foreach ($selectMySQL as $value)
                     {
                         echo
@@ -74,7 +71,7 @@
                     . "</div>";
                 }
 //SESSION     
-                if ($_POST['db'] == 'cookie')
+                if ($_POST['db'] == 'session')
                 {
                     $selectSession = $objSession->getData($key);
                     echo

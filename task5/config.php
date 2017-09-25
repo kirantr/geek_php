@@ -14,4 +14,9 @@ define("PG_SERVER", "host=localhost dbname=user1 user=user1 password=user1z");
 
 define('NOT_COOKIE', 'Cookie does not exist!');
 define('DEL_COOKIE', 'Cookie successfully deleted');
+define('SET_COOKIE', 'Cookie successfully set');
+
+define('NOT_SESSION', 'Session does not exist!');
+define('DEL_SESSION', 'Session successfully deleted');
+define('SET_SESSION', 'Session successfully set');
 ?>

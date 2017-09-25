@@ -12,10 +12,18 @@ $objMySQL = new MySQL();
 $objCookie = new CookieClass();
 $objSession = new SessionClass();
 
-include_once './templates/tmpl_index.php';
-
 if (isset($_POST['flag']))
 {
+
+//SELECT
+    if ($_POST['flag'] == 'select')
+    {
+        $key = 'user7';
+        if ($_POST['db'] == 'mysql')
+        {
+            $selectMySQL = $objMySQL->getData($key);
+        }
+    }
 
 //SAVE_DATA
     if ($_POST['flag'] == 'insert' && isset($_POST['text']))
@@ -35,8 +43,7 @@ if (isset($_POST['flag']))
         {
             $key = "user7";
             $objSQL = $objCookie;
-        }
-        elseif ($_POST['db'] == 'session')
+        } elseif ($_POST['db'] == 'session')
         {
             $key = "user7";
             $objSQL = $objSession;
@@ -61,13 +68,14 @@ if (isset($_POST['flag']))
         {
             $key = "user7";
             $objSQL = $objCookie;
-        }
-        elseif ($_POST['db'] == 'session')
+        } elseif ($_POST['db'] == 'session')
         {
             $key = "user7";
             $objSQL = $objSession;
         }
-        
+
         $objSQL->deleteData($key);
     }
 }
+
+include_once './templates/tmpl_index.php';

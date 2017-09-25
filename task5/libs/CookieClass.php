@@ -18,7 +18,7 @@ class CookieClass implements iWorkData
     {
         setcookie($key, $val, time() + 3600);
         $_COOKIE[$key] = $val;
-        return true;
+        return SET_COOKIE;
     }
 
     public function deleteData($key)

@@ -3,23 +3,12 @@
 class SessionClass implements iWorkData
 {
 
-    /**
-     * Save Data to session
-     * @param $key
-     * @param $val
-     * @return bool
-     */
     public function saveData($key, $val)
     {
         $_SESSION[$key] = $val;
-        return true;
+        return SET_SESSION;
     }
 
-    /**
-     * Get Data from Session
-     * @param $key
-     * @return bool
-     */
     public function getData($key)
     {
         if (isset($_SESSION[$key]))
@@ -28,25 +17,20 @@ class SessionClass implements iWorkData
         }
         else
         {
-            return false;
+            return NOT_SESSION;
         }
     }
 
-    /**
-     * Delete data from Session
-     * @param $key
-     * @return bool
-     */
     public function deleteData($key)
     {
         if (isset($_SESSION[$key]))
         {
             unset($_SESSION[$key]);
-            return true;
+            return DEL_SESSION;
         }
         else
         {
-            return false;
+            return NOT_SESSION;
         }
     }
 
