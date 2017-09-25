@@ -12,7 +12,7 @@
             $result = $this->pdo->query($sql, PDO::FETCH_ASSOC);
             if (!is_bool($result))
             {
-        var_dump('<br> $result= ', $result);
+//        var_dump('<br> $result= ', $result);
                 $stack = array();
                 foreach ($result as $row)
                 {

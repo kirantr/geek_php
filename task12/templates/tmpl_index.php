@@ -40,8 +40,13 @@
                     . $value['key'] . ' ' . $value['data']
                     . "</div>";
                 }
+            } elseif (isset($report))
+                {
+                    echo
+                    '<div class="col-md-offset-4 col-md-4 output">'
+                    . $report
+                    . "</div>";
             }
-
             ?>
         </div>
     </body>

@@ -80,7 +80,7 @@
          )
          {
              $this->query = $this->select . $this->from . $this->where;
-             var_dump($this->query);
+//             var_dump($this->query);
              return $this->query;
          } 
 //INSERT

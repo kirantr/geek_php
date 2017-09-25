@@ -6,7 +6,6 @@ include_once 'libs/MyPDO.php';
 include_once 'libs/MySql.php';
 include_once 'libs/PostgreSQL.php';
 
-include_once './templates/tmpl_index.php';
 if (isset($_POST['db']) && isset($_POST['flag']))
 {
     $flag = $_POST['flag'];
@@ -46,13 +45,6 @@ if (isset($_POST['db']) && isset($_POST['flag']))
         $objMyPDO->flag = 'select';
         $selectMyPDO = $objMyPDO->select($keyData)->
                         from($table)->where("user7", $key)->exec();
-        foreach ($selectMyPDO as $value)
-        {
-            echo
-            '<div class="col-md-offset-4 col-md-4 output">'
-            . $value['key'] . ' ' . $value['data']
-            . "</div>";
-        }
     }
     if (isset($_POST['flag']))
     {
@@ -63,6 +55,7 @@ if (isset($_POST['db']) && isset($_POST['flag']))
         {
             $objMyPDO->flag = 'insert';
             $objMyPDO->insert($table, $keyData)->values('user7', $_POST['text'])->exec();
+            $report = 'Insert successfull';
         }
 
 //DELETE
@@ -70,6 +63,7 @@ if (isset($_POST['db']) && isset($_POST['flag']))
         {
             $objMyPDO->flag = 'delete';
             $objMyPDO->delete()->from($table)->where('user7', $key)->exec();
+            $report = 'Delete successfull';
         }
 //UPDATE
         if ($flag == 'update')
@@ -77,7 +71,9 @@ if (isset($_POST['db']) && isset($_POST['flag']))
             $objMyPDO->flag = 'update';
             $objMyPDO->update($table)->set($data, $_POST['text'])
                     ->where('user7', $key)->exec();
+            $report = 'Update successfull';
         }
     }
 }
 
+include_once './templates/tmpl_index.php';
