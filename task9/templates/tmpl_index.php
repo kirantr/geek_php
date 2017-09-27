@@ -6,7 +6,14 @@
         <link href="css/style.css" rel="stylesheet">
 
         <title>HtmlHelper</title>
-    </head>
+<style>
+   dd {
+    font-style: italic;
+   }
+   dt {
+    margin-top: 1em;
+   }
+  </style>    </head>
     <body>
         <div class="col-md-offset-5 col-md-7">
             <h2>HtmlHelper</h2>
@@ -26,18 +33,20 @@
                     <br><p><input type="radio" name="flag" value="select" checked> Select</p>
                     <p><input type="radio" name="flag" value="mult_select"> Multi Select</p>
                     <p><input type="radio" name="flag" value="table"> Table</p>
-                    <p><input type="radio" name="flag" value="update"> Update</p>
+                    <p><input type="radio" name="flag" value="ul"> UL</p>
+                    <p><input type="radio" name="flag" value="ol"> OL</p>
+                    <p><input type="radio" name="flag" value="dl"> DL-DT-DD</p>
+                    <p><input type="radio" name="flag" value="radio"> Radio</p>
                     <div class="col-md-offset-3 col-md-8"> 
                         <p><input type="submit" value="Send"></p><br>
                     </div>
                 </div>
             </form>
             <?php
-//SELECT
 
-            if (isset($select))
+            if (isset($out))
             {
-                foreach ($select as $key => $value)
+                foreach ($out as $key => $value)
                 {
                     echo
                     '<div class="col-md-offset-5 col-md-4 output">'

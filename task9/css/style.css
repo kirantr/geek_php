@@ -22,3 +22,9 @@ button{
     font-size: 18px;
 }
 
+   dd {
+    font-style: italic; /* Курсивное начертание текста */
+   }
+   dt {
+    margin-top: 1em; /* Отступ сверху */
+   }

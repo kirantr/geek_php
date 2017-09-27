@@ -11,14 +11,36 @@ if (isset($_POST['text1']) || isset($_POST['text2']) || isset($_POST['text3']) |
         $text = $_POST["text$i"];
         array_push($stack, $text);
     }
+
     $flag = $_POST['flag'];
+    
+//SELECT    
     if ($flag == 'select' || $flag == 'mult_select')
     {
-        $select = HtmlHelper::select($stack, $flag);
+        $out = HtmlHelper::select($stack, $flag);
     }
+    
+//UL-OL    
+    if ($flag == 'ul' || $flag == 'ol')
+    {
+        $out = HtmlHelper::ulOl($stack, $flag);
+    }
+    
+//DL-DT-DD
+    if ($flag == 'dl')
+    {
+        $out = HtmlHelper::dlDtDd($stack, $flag);
+    }
+
+//TABLE    
     if ($flag == 'table')
     {
-    $table = HtmlHelper::table($stack, $flag);
+    $out = HtmlHelper::table($stack);
+    }
+//RADIO
+    if ($flag == 'radio')
+    {
+    $out = HtmlHelper::radio($stack, $flag);
     }
 }
 include_once './templates/tmpl_index.php';
