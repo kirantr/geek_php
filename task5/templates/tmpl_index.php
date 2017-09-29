@@ -47,19 +47,19 @@
                 }
 
 //SELECT PG
-//
-//             if ($_POST['db'] == 'pg')
-//             {
-//                 $selectPgSQL = $objPgSQL->sgetData($key);
 
-//                    foreach ($selectPgSQL as $value)
-//                    {
-//                        echo
-//                        '<div class="col-md-offset-4 col-md-4 output">'
-//                        . $value['key'] . ' ' . $value['data']
-//                        . "</div>";
-//                    }
-//                }
+             if ($_POST['db'] == 'pg')
+             {
+                 $selectPgSQL = $objPgSQL->getData($key);
+
+                    foreach ($selectPgSQL as $value)
+                    {
+                        echo
+                        '<div class="col-md-offset-4 col-md-4 output">'
+                        . $value['key'] . ' ' . $value['data']
+                        . "</div>";
+                    }
+                }
 
 //COOKIE     
                 if ($_POST['db'] == 'cookie')

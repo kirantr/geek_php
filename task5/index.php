@@ -8,7 +8,7 @@ include_once 'libs/CookieClass.php';
 include_once 'libs/SessionClass.php';
 
 $objMySQL = new MySQL();
-// $objPgSQL = new PostgreSQL();
+ $objPgSQL = new PostgreSQL();
 $objCookie = new CookieClass();
 $objSession = new SessionClass();
 
@@ -34,11 +34,11 @@ if (isset($_POST['flag']))
             $key = "`key`, `data`";
             $objSQL = $objMySQL;
         }
-//         elseif ($_POST['db'] == 'pg')
-//         {
-//             $key = "key, data";
-//             $objSQL = $objPgSQL;
-//        }
+         elseif ($_POST['db'] == 'pg')
+         {
+             $key = "key, data";
+             $objSQL = $objPgSQL;
+        }
         elseif ($_POST['db'] == 'cookie')
         {
             $key = "user7";
@@ -59,11 +59,11 @@ if (isset($_POST['flag']))
             $key = "'user7'";
             $objSQL = $objMySQL;
         }
-//         elseif ($_POST['db'] == 'pg')
-//         {
-//             $key = "user7";
-//             $objSQL = $objPgSQL;
-//         }
+         elseif ($_POST['db'] == 'pg')
+         {
+             $key = "user7";
+             $objSQL = $objPgSQL;
+         }
         elseif ($_POST['db'] == 'cookie')
         {
             $key = "user7";
