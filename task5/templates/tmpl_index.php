@@ -17,10 +17,18 @@
                     <p><input type="text" name="text" value="Input Data"> </p>
                 </div>
                 <div class="col-md-offset-4 col-md-8">
-                    <p><input type="radio" name="db" value="mysql" checked> MySQL
-                        <span class="col-md-offset-1">  <input type="radio" name="db" value="pg"> PostgreSQL</span>
-                        <span class="col-md-offset-1">  <input type="radio" name="db" value="session"> Session</span>
-                        <span class="col-md-offset-1">  <input type="radio" name="db" value="cookie"> Cookie</p></span>
+                    <p>
+                        <input type="radio" name="db" value="mysql" checked> MySQL
+                        <span class="col-md-offset-1">
+                            <input type="radio" name="db" value="pg"> PostgreSQL
+                        </span>
+                        <span class="col-md-offset-1">
+                            <input type="radio" name="db" value="session"> Session
+                        </span>
+                        <span class="col-md-offset-1">
+                            <input type="radio" name="db" value="cookie"> Cookie
+                        </span>
+                    </p>
                 </div>
                 <div class="col-md-offset-3 col-md-9">
                     <br><p><input type="radio" name="flag" value="select" checked> Get Data</p>
@@ -32,12 +40,12 @@
                 </div>
             </form>
             <?php
-            if(isset($_POST['db']))
+            if (isset($_POST['db']))
             {
 //SELECT
-            if (isset($selectMySQL ))
-            {
-                    foreach ($selectMySQL as $value)
+                if (isset($select))
+                {
+                    foreach ($select as $value)
                     {
                         echo
                         '<div class="col-md-offset-4 col-md-4 output">'
@@ -46,37 +54,11 @@
                     }
                 }
 
-//SELECT PG
-
-             if ($_POST['db'] == 'pg')
-             {
-                 $selectPgSQL = $objPgSQL->getData($key);
-
-                    foreach ($selectPgSQL as $value)
-                    {
-                        echo
-                        '<div class="col-md-offset-4 col-md-4 output">'
-                        . $value['key'] . ' ' . $value['data']
-                        . "</div>";
-                    }
-                }
-
-//COOKIE     
-                if ($_POST['db'] == 'cookie')
+                if (isset($report))
                 {
-                    $selectCookie = $objCookie->getData($key);
                     echo
                     '<div class="col-md-offset-4 col-md-4 output">'
-                    . $selectCookie
-                    . "</div>";
-                }
-//SESSION     
-                if ($_POST['db'] == 'session')
-                {
-                    $selectSession = $objSession->getData($key);
-                    echo
-                    '<div class="col-md-offset-4 col-md-4 output">'
-                    . $selectSession
+                    . $report
                     . "</div>";
                 }
             }

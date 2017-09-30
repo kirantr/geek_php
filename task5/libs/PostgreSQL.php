@@ -29,6 +29,7 @@ class PostgreSQL implements iWorkData
     {
         $query = "INSERT INTO " . '"' . PG_NAME_TABLE . '"' . " ($key) VALUES ('user7', '" . $data . "')";
         $result = pg_query($this->dbServerPg, $query);
+        return SAVE_OK;
     }
 
 //DELETE    
@@ -37,6 +38,7 @@ class PostgreSQL implements iWorkData
         $query = "DELETE FROM " . '"' . PG_NAME_TABLE . '"' . " WHERE key= '$key'";
 //        var_dump($query);
         $result = pg_query($this->dbServerPg, $query);
+        return DELETE_OK;
     }
 
     public function __destruct()

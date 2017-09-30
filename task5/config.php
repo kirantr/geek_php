@@ -7,6 +7,8 @@ define("DBUSER", "user1");
 define("DBPASS", "tuser1");
 
 define("NAME_TABLE", "MY_TEST");
+ define("SAVE_OK", "Insert successfull");
+ define("DELETE_OK", "Delete successfull");
 
 //PostgreSQL
 define("PG_NAME_TABLE", "PG_TEST");

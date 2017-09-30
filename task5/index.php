@@ -2,79 +2,101 @@
 
 include_once './config.php';
 include_once 'libs/iWorkData.php';
-include_once 'libs/MySql.php';
-include_once 'libs/PostgreSQL.php';
 include_once 'libs/CookieClass.php';
 include_once 'libs/SessionClass.php';
+include_once 'libs/MySql.php';
+include_once 'libs/PostgreSQL.php';
 
-$objMySQL = new MySQL();
- $objPgSQL = new PostgreSQL();
 $objCookie = new CookieClass();
 $objSession = new SessionClass();
+$objMySQL = new MySQL();
+$objPgSQL = new PostgreSQL();
 
 if (isset($_POST['flag']))
 {
+    $flag = $_POST['flag'];
+    $db = $_POST['db'];
 
-//SELECT
-    if ($_POST['flag'] == 'select')
+//SELECT COOKIE     
+    if ($db == 'cookie')
+    {
+        $report = $objCookie->getData($key);
+    }
+
+//SELECT SESSION     
+    if ($db == 'session')
+    {
+        $report = $objSession->getData($key);
+    }
+
+//SELECT MySQL
+    if ($flag == 'select' && $db == 'mysql')
     {
         $key = 'user7';
-        if ($_POST['db'] == 'mysql')
-        {
-            $selectMySQL = $objMySQL->getData($key);
-        }
+        $select = $objMySQL->getData($key);
+    }
+
+//SELECT PG
+    if ($flag == 'select' && $db == 'pg')
+    {
+        $key = 'user7';
+        $select = $objPgSQL->getData($key);
     }
 
 //SAVE_DATA
-    if ($_POST['flag'] == 'insert' && isset($_POST['text']))
+    if ($flag == 'insert' && isset($_POST['text']))
     {
         $data = $_POST['text'];
-        if ($_POST['db'] == 'mysql')
+        if ($db == 'mysql')
         {
             $key = "`key`, `data`";
             $objSQL = $objMySQL;
         }
-         elseif ($_POST['db'] == 'pg')
-         {
-             $key = "key, data";
-             $objSQL = $objPgSQL;
+        elseif ($db == 'pg')
+        {
+            $key = "key, data";
+            $objSQL = $objPgSQL;
         }
-        elseif ($_POST['db'] == 'cookie')
+        elseif ($db == 'cookie')
         {
             $key = "user7";
             $objSQL = $objCookie;
-        } elseif ($_POST['db'] == 'session')
+        }
+        elseif ($db == 'session')
         {
             $key = "user7";
             $objSQL = $objSession;
         }
-        $objSQL->saveData($key, $data);
+        $save = $objSQL->saveData($key, $data);
+        $report = $save;
     }
 
 //DELETE
-    if ($_POST['flag'] == 'delete')
+    if ($flag == 'delete')
     {
-        if ($_POST['db'] == 'mysql')
+        if ($db == 'mysql')
         {
             $key = "'user7'";
             $objSQL = $objMySQL;
         }
-         elseif ($_POST['db'] == 'pg')
-         {
-             $key = "user7";
-             $objSQL = $objPgSQL;
-         }
-        elseif ($_POST['db'] == 'cookie')
+        elseif ($db == 'pg')
+        {
+            $key = "user7";
+            $objSQL = $objPgSQL;
+        }
+        elseif ($db == 'cookie')
         {
             $key = "user7";
             $objSQL = $objCookie;
-        } elseif ($_POST['db'] == 'session')
+        }
+        elseif ($db == 'session')
         {
             $key = "user7";
             $objSQL = $objSession;
         }
 
-        $objSQL->deleteData($key);
+        $delete = $objSQL->deleteData($key);
+        $report = $delete;
     }
 }
 

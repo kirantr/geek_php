@@ -37,6 +37,7 @@ class MySql implements iWorkData
     {
         $query = "INSERT INTO " . NAME_TABLE . " ($key) VALUES ('user7', '" . $data . "')";
         $result = mysqli_query($this->dbServer, $query);
+        return SAVE_OK;
     }
 
 //DELETE    
@@ -45,6 +46,7 @@ class MySql implements iWorkData
         $query = "DELETE FROM ". NAME_TABLE ." WHERE `key`=" . $key;
 //        var_dump($query);
         $result = mysqli_query($this->dbServer, $query);
+        return DELETE_OK;
     }
 }
 
