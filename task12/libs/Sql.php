@@ -91,7 +91,7 @@
          )
          {
              $this->query = $this->insert . $this->values;
-             var_dump($this->query);
+//             var_dump($this->query);
              return $this->query;
          }
 

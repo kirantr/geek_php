@@ -8,6 +8,9 @@
  define("DBPASS", "tuser1");
 
  define("NAME_TABLE", "MY_TEST");
+ define("SAVE_OK", "Insert successfull");
+ define("DELETE_OK", "Delete successfull");
+ define("UPDATE_OK", "Update successfull");
 
 //PostgreSQL
  define("PG_DNS", "pgsql:host=localhost;port=5432;dbname=user1;user=user1;password=user1z");

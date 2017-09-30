@@ -34,9 +34,10 @@ if (isset($_POST['db']) && isset($_POST['flag']))
     {
         $objPgSQL = new PostgreSQL();
         $objPgSQL->pdo = $objMyPDO->pdo;
-        $keyData = '"key", "data"';
-        $key = '"key"';
-        $data = '"data"';
+        $objMyPDO = $objPgSQL;
+        $keyData = 'key, data';
+        $key = 'key';
+        $data = 'data';
         $table = PG_NAME_TABLE;
     }
 //SELECT
@@ -55,7 +56,7 @@ if (isset($_POST['db']) && isset($_POST['flag']))
         {
             $objMyPDO->flag = 'insert';
             $objMyPDO->insert($table, $keyData)->values('user7', $_POST['text'])->exec();
-            $report = 'Insert successfull';
+            $report = SAVE_OK;
         }
 
 //DELETE
@@ -63,7 +64,7 @@ if (isset($_POST['db']) && isset($_POST['flag']))
         {
             $objMyPDO->flag = 'delete';
             $objMyPDO->delete()->from($table)->where('user7', $key)->exec();
-            $report = 'Delete successfull';
+            $report = DELETE_OK;
         }
 //UPDATE
         if ($flag == 'update')
@@ -71,7 +72,7 @@ if (isset($_POST['db']) && isset($_POST['flag']))
             $objMyPDO->flag = 'update';
             $objMyPDO->update($table)->set($data, $_POST['text'])
                     ->where('user7', $key)->exec();
-            $report = 'Update successfull';
+            $report = UPDATE_OK;
         }
     }
 }
