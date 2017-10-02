@@ -1,7 +1,7 @@
 <?php
 
 define(TEMPLATE, 'templates/index.php');
-//define ('EMAIL_TO', 'vpavlov@geeksforless.net');
+define ('EMAIL_TO', 'vpavlov@geeksforless.net');
 //define ('EMAIL_TO', 'kirill.ryabenko@gmail.com');
 
 define('OPT_selected', 'Choise a theme');

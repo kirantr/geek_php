@@ -15,8 +15,9 @@ class PostgreSQL implements iWorkData
 //SELECT
     public function getData($key)
     {
-        $query = 'SELECT key, data FROM ' . '"' . PG_NAME_TABLE . '"' . " WHERE key='$key'";
-        $result = pg_query($this->dbServerPg, $query);
+        $query = 'SELECT key, data FROM ' . PG_NAME_TABLE . " WHERE key='$key'";
+//         $query = 'SELECT key, data FROM ' . '"' . PG_NAME_TABLE . '"' . " WHERE key='$key'";
+       $result = pg_query($this->dbServerPg, $query);
         while ($row = pg_fetch_array($result))
         {
             array_push($this->stack, $row);
@@ -27,15 +28,17 @@ class PostgreSQL implements iWorkData
 //INSERT
     public function saveData($key, $data)
     {
-        $query = "INSERT INTO " . '"' . PG_NAME_TABLE . '"' . " ($key) VALUES ('user7', '" . $data . "')";
-        $result = pg_query($this->dbServerPg, $query);
+        $query = "INSERT INTO " . PG_NAME_TABLE . " ($key) VALUES ('user7', '" . $data . "')";
+//         $query = "INSERT INTO " . '"' . PG_NAME_TABLE . '"' . " ($key) VALUES ('user7', '" . $data . "')";
+       $result = pg_query($this->dbServerPg, $query);
         return SAVE_OK;
     }
 
 //DELETE    
     public function deleteData($key)
     {
-        $query = "DELETE FROM " . '"' . PG_NAME_TABLE . '"' . " WHERE key= '$key'";
+        $query = "DELETE FROM " . PG_NAME_TABLE . " WHERE key= '$key'";
+//        $query = "DELETE FROM " . '"' . PG_NAME_TABLE . '"' . " WHERE key= '$key'";
 //        var_dump($query);
         $result = pg_query($this->dbServerPg, $query);
         return DELETE_OK;
